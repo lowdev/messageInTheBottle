@@ -1,0 +1,61 @@
+.navbar-inner {
+    /* padding:7px; */
+    opacity: 0.9
+}
+
+.active {
+  border-radius:7px;
+}
+
+.section {
+  padding-top:70px;
+  min-height:100vh;
+}
+
+.section-heading {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.section-heading:after {
+  content: '';
+  display: block;
+  background: #f8ca00;
+  height: 1px;
+  width: 216px;
+  margin: 0.5em auto;
+  margin-bottom:0.75em
+}
+
+.valign-wrapper {
+  display: table;
+  table-layout: fixed;
+}
+
+.valign {
+  display:table-cell;
+  vertical-align:middle;
+  text-align:center;
+}
+
+.intro {
+  text-align:center;
+}
+
+.intro > .title {
+  margin:27px 0px;
+}
+
+.intro > .social > a {
+  font-size: 15px
+}
+.yellow-wave {
+  background: rgba(241,231,103,1);
+  background: -moz-radial-gradient(center, ellipse cover, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(241,231,103,1)), color-stop(100%, rgba(254,182,69,1)));
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+  background: radial-gradient(ellipse at center, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645', GradientType=1 );
+}
