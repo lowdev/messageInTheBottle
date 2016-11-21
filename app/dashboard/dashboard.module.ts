@@ -1,14 +1,10 @@
 import { NgModule, AfterContentInit } from '@angular/core';
 import { DashboardComponent }         from './dashboard.component';
-declare var demo:any;
+import { MaterializeDirective }       from "angular2-materialize";
 
 @NgModule({
-  declarations: [ DashboardComponent ],
+  declarations: [ DashboardComponent, MaterializeDirective ],
   exports: [ DashboardComponent ]
 })
-export class DashboardModule implements AfterContentInit {
-  ngAfterContentInit() {
-    console.log('dashboard init');
-    demo.init();
-  }
+export class DashboardModule {
 }

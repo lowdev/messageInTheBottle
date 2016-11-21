@@ -1,12 +1,8 @@
 import { NgModule }              from '@angular/core';
 import { IntroductionComponent } from './introduction.component';
-import { MaterializeDirective }  from 'angular2-materialize';
 
 @NgModule({
-  declarations: [
-    IntroductionComponent,
-    MaterializeDirective
-  ],
+  declarations: [ IntroductionComponent ],
   exports: [ IntroductionComponent ]
 })
 export class IntroductionModule { }
