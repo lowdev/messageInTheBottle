@@ -4,3 +4,8 @@ body {
   font-family: 'Roboto', 'Helvetica', 'Arial' ,sans-serif;
   text-rendering: optimizeLegibility;
 }
+
+/* Not in the component */
+.sebm-google-map-container-inner {
+  z-index: -1;
+}

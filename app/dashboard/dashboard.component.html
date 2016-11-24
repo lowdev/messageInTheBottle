@@ -1,9 +1,9 @@
-<ul id="slide-out" class="side-nav fixed blue-grey lighten-5" style="transform: translateX(0%);">
+<ul id="slide-out" class="side-nav blue-grey lighten-5" style="transform: translateX(0%);">
   <li><div class="userView">
     <div class="background">
-      <img src="./app/dashboard/asset/air-G-ok.jpg">
+      <img src="./app/dashboard/asset/air-G-ok2.jpg">
     </div>
-    <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
+    <a href="#!user"><img class="circle" src="./app/dashboard/asset/me.jpg"></a>
     <a href="#!name"><span class="white-text name">John Doe</span></a>
     <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
   </div></li>
@@ -21,3 +21,20 @@
     <a href="#!" class="brand-logo center"></a>
   </div>
 </nav>
+
+<div class="row">
+  <div class="col s5">
+    <sebm-google-map
+      [latitude]="lat"
+      [longitude]="lng"
+      [zoom]="zoom"
+      [disableDefaultUI]="false"
+      [zoomControl]="false"
+      (mapClick)="mapClicked($event)">
+
+    </sebm-google-map>
+  </div>
+
+  <div class="col s8">
+  </div>
+</div>
