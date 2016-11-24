@@ -1,14 +1,21 @@
 .sebm-google-map-container {
   height: 100%;
-  z-index: -1;
 }
-
-.row .col {
+.main-row, .col {
   float: left;
   box-sizing: border-box;
-  padding: 0;
-}
-
-.row {
+  padding-left: 0;
   margin-bottom: 0;
+}
+.card-info, .card__meta a {
+  display: inline-flex;
+  vertical-align: middle;
+  line-height: 2;
+  font-size: 1rem;
+}
+.card__meta i.small {
+  font-size: 1.5rem;
+}
+.card .card-content .card-title {
+  line-height: 34px;
 }
