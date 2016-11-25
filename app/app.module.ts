@@ -2,6 +2,8 @@ import { NgModule }              from '@angular/core';
 import { BrowserModule }         from '@angular/platform-browser';
 import { RouterModule, Routes }  from '@angular/router';
 
+import { MaterializeDirective } from "angular2-materialize";
+
 import { IntroductionModule }    from './introduction/introduction.module';
 import { IntroductionComponent } from './introduction/introduction.component';
 

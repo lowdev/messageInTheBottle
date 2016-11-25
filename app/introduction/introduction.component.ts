@@ -1,5 +1,5 @@
-import { Component, AfterContentInit } from '@angular/core';
-import { Router }                      from '@angular/router';
+import { Component } from '@angular/core';
+import { Router }    from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -7,10 +7,7 @@ import { Router }                      from '@angular/router';
   templateUrl: 'introduction.component.html',
   styleUrls: ['./introduction.component.css']
 })
-export class IntroductionComponent implements AfterContentInit {
-
-  ngAfterContentInit() {
-  }
+export class IntroductionComponent {
 
   constructor(
     private router: Router
