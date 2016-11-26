@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: 'bottle-card.component.html'
 })
 export class BottleCardComponent {
+  @Input() title: string;
 }
