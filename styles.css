@@ -7,5 +7,9 @@ body {
 
 /* Not in the component */
 .sebm-google-map-container-inner {
-  z-index: -1;
+}
+
+nav {
+  z-index: 10;
+  position: relative;
 }
