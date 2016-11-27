@@ -6,10 +6,11 @@ body {
 }
 
 /* Not in the component */
-.sebm-google-map-container-inner {
-}
-
 nav {
   z-index: 10;
   position: relative;
+}
+
+.card .card-content .card-title {
+    line-height: 30px;
 }
