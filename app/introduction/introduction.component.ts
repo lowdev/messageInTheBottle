@@ -17,6 +17,6 @@ export class IntroductionComponent {
   ) {}
 
   log() {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/bottles']);
   }
 }
