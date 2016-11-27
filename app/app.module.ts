@@ -8,14 +8,12 @@ import { IntroductionModule }    from './introduction/introduction.module';
 import { IntroductionComponent } from './introduction/introduction.component';
 
 import { DashboardModule }       from './dashboard/dashboard.module';
-import { DashboardComponent }    from './dashboard/dashboard.component';
 
+import { Animations }            from './animations';
 import { AppComponent }          from './app.component';
 
 const appRoutes: Routes = [
-  { path: '', component: IntroductionComponent },
-  { path: 'introduction', component: IntroductionComponent },
-  { path: 'dashboard', component: DashboardComponent }
+  { path: '', component: IntroductionComponent }
 ];
 
 @NgModule({
@@ -26,6 +24,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   declarations: [ AppComponent ],
-  bootstrap:    [ AppComponent ]
+  providers: [ Animations ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
