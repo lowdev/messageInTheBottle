@@ -3,6 +3,7 @@
 }
 .main-row {
   position: fixed;
+  width: 100%;
   top: 62px;
   bottom: 0;
   right: 0;
