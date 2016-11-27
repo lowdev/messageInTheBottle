@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
-import { Router }    from '@angular/router';
+import { Component }  from '@angular/core';
+import { Router }     from '@angular/router';
+import { Animations } from '../animations';
 
 @Component({
   moduleId: module.id,
   selector: 'introduction',
   templateUrl: 'introduction.component.html',
-  styleUrls: ['./introduction.component.css']
+  styleUrls: ['./introduction.component.css'],
+  host: { '[@routeAnimation]': 'true' },
+  animations: Animations.page
 })
 export class IntroductionComponent {
 

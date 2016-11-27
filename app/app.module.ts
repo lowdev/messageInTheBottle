@@ -13,7 +13,11 @@ import { Animations }            from './animations';
 import { AppComponent }          from './app.component';
 
 const appRoutes: Routes = [
-  { path: '', component: IntroductionComponent }
+  {
+    path: '',
+    redirectTo: '/introduction',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
