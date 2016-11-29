@@ -2,7 +2,8 @@
   "name": "messageInBottle",
   "version": "1.0.0",
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "start": "node server.js",
+    "postinstall": "tsc",
     "lite": "lite-server",
     "tsc": "tsc",
     "tsc:w": "tsc -w"
@@ -35,8 +36,10 @@
     "express": "^4.13.4",
     "@types/core-js": "^0.9.34",
     "@types/node": "^6.0.45",
-    "typescript": "^2.0.3",
-	"concurrently": "^3.0.0",
+    "typescript": "^2.0.3"
+  },
+  "devDependencies": {
+    "concurrently": "^3.0.0",
     "lite-server": "^2.2.2"
   }
 }
