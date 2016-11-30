@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router }           from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -8,4 +9,12 @@ import { Component, Input } from '@angular/core';
 })
 export class BottleCardComponent {
   @Input() title: string;
+
+  constructor(
+    private router: Router
+  ) {}
+
+  displayDetail() {
+    this.router.navigate(['/message-detail']);
+  }
 }

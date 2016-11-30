@@ -1,13 +1,10 @@
 import { Component, AfterContentInit, EventEmitter } from '@angular/core';
-import { Animations } from '../animations';
 
 @Component({
   moduleId: module.id,
   selector: 'dashboard',
   templateUrl: 'dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
-  host: { '[@routeAnimation]': 'true' },
-  animations: Animations.page
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
   // google maps zoom level
