@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent }   from './dashboard.component';
 import { ListBottlesComponent } from './list-bottles/list-bottles.component';
-import { ViewBottleComponent }  from './view-bottle/view-bottle.component';
+import { MessageDetailComponent }  from './message-detail/message-detail.component';
 
 const dashboardRoutes: Routes = [
   {
@@ -13,8 +13,8 @@ const dashboardRoutes: Routes = [
       {
         path: '',
         children: [
-          { path: 'bottles', component: ListBottlesComponent },
-          { path: 'viewBottle', component: ViewBottleComponent }
+          { path: 'list', component: ListBottlesComponent },
+          { path: 'message-detail', component: MessageDetailComponent }
         ]
       }
     ]

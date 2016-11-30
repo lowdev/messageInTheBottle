@@ -7,14 +7,14 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent }     from './dashboard.component';
 
 import { ListBottlesModule }      from './list-bottles/list-bottles.module';
-import { ViewBottleModule }       from './view-bottle/view-bottle.module';
+import { MessageDetailModule }    from './message-detail/message-detail.module';
 
 @NgModule({
   imports: [
     AgmCoreModule.forRoot(),
     ListBottlesModule,
     DashboardRoutingModule,
-    ViewBottleModule
+    MessageDetailModule
   ],
   declarations: [ DashboardComponent, MaterializeDirective ],
   exports: [ DashboardComponent ]
