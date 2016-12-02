@@ -6,9 +6,10 @@ import { Animations } from '../../animations';
   selector: 'message-detail',
   templateUrl: 'message-detail.component.html',
   styleUrls: ['./message-detail.component.css'],
-  styles: [':host { width: 100%; display: block; position: absolute; }'],
+  styles: [':host { display: block; }'],
   host: { '[@routeAnimation]': 'true' },
   animations: Animations.page
 })
 export class MessageDetailComponent {
+  @Input() title: string;
 }
