@@ -29,3 +29,6 @@
 .card .card-content .card-title {
   line-height: 34px;
 }
+.fixed-action-btn {
+  z-index: 997;
+}
