@@ -15,7 +15,9 @@
 <nav>
   <div class="nav-wrapper blue-grey darken-2">
     <a href="#" materialize="sideNav" data-activates="slide-out"
-       class="button-collapse show-on-large">
+        [materializeActions]="sidenavActions"
+        [materializeParams]="[{edge: 'left', closeOnClick: true, draggable: true}]"
+        class="button-collapse show-on-large">
       <i class="material-icons">menu</i>
     </a>
     <a href="#!" class="brand-logo center"></a>

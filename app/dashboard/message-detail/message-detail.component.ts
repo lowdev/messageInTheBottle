@@ -28,7 +28,6 @@ export class MessageDetailComponent implements OnInit {
       .switchMap((params: Params) => this.service.getBottle(+params['id']))
       .subscribe((bottle: Bottle) => {
         this.bottle = bottle;
-        console.log("bottle: " + this.bottle.title);
       });
   }
 }

@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  sidenavActions = new EventEmitter<any>();
+  sidenavParams = [];
 
   constructor(
     private router: Router
@@ -20,6 +22,11 @@ export class DashboardComponent {
 
   gotoIntro() {
     this.router.navigate(['/dashboard']);
+  }
+
+  hideMenu(): void {
+    this.sidenavParams = ['hide'];
+    this.sidenavActions.emit('sideNav');
   }
 
   // google maps zoom level
