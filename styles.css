@@ -14,3 +14,7 @@ nav {
 .card .card-content .card-title {
     line-height: 30px;
 }
+
+a {
+  cursor: pointer;
+}
