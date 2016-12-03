@@ -16,9 +16,6 @@ export class BottleCardComponent {
   ) {}
 
   displayDetail() {
-    console.log("display detail : " + this.bottle);
-    this.router.navigate(['/message-detail',
-      { bottle : JSON.stringify(this.bottle) }
-    ]);
+    this.router.navigate(['/dashboard/message/' + this.bottle.id]);
   }
 }

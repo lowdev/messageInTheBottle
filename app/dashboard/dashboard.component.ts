@@ -1,4 +1,5 @@
 import { Component, AfterContentInit, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -7,6 +8,20 @@ import { Component, AfterContentInit, EventEmitter } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+
+  constructor(
+    private router: Router
+  ) {}
+
+  // Menu
+  logOut() {
+    this.router.navigate(['/introduction']);
+  }
+
+  gotoIntro() {
+    this.router.navigate(['/dashboard']);
+  }
+
   // google maps zoom level
   zoom: number = 8;
 
