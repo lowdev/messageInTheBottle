@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router }           from '@angular/router';
+import { Bottle }           from '../../bottle.model';
 
 @Component({
   moduleId: module.id,
@@ -8,13 +9,16 @@ import { Router }           from '@angular/router';
   styleUrls: ['./bottle-card.component.css']
 })
 export class BottleCardComponent {
-  @Input() title: string;
+  @Input() bottle: Bottle;
 
   constructor(
     private router: Router
   ) {}
 
   displayDetail() {
-    this.router.navigate(['/message-detail']);
+    console.log("display detail : " + this.bottle);
+    this.router.navigate(['/message-detail',
+      { bottle : JSON.stringify(this.bottle) }
+    ]);
   }
 }

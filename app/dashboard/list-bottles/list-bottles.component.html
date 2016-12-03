@@ -4,7 +4,7 @@
     <div class="row">
       <!-- Col: Card -->
       <div class="col s12 m6 l5" *ngFor="let bottle of bottles">
-        <bottle-card title="{{ bottle.title }}"></bottle-card>
+        <bottle-card [bottle]="bottle"></bottle-card>
       </div>
       <!-- End of col -->
     </div>

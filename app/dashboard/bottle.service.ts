@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-
-export class Bottle {
-  constructor(public id: number, public title: string) { }
-}
+import { Bottle }     from './bottle.model'
 
 let BOTTLES = [
   new Bottle(11, 'Besoin d\'eau'),
@@ -17,5 +14,9 @@ let bottlesPromise = Promise.resolve(BOTTLES);
 export class BottleService {
   getBottles(): Promise<Bottle[]> {
     return bottlesPromise;
+  }
+  getBottle(id: number | string): Promise<Bottle> {
+    return bottlesPromise
+      .then(bottles => bottles.find(bottle => bottle.id === +id));
   }
 }

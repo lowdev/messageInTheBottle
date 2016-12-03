@@ -7,14 +7,15 @@ import { MessageDetailComponent }  from './message-detail/message-detail.compone
 
 const dashboardRoutes: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     component: DashboardComponent,
     children: [
       {
         path: '',
         children: [
-          { path: 'list', component: ListBottlesComponent },
-          { path: 'message-detail', component: MessageDetailComponent }
+          { path: '', redirectTo: 'bottles', pathMatch: 'full' },
+          { path: 'bottles', component: ListBottlesComponent },
+          { path: 'message/:id', component: MessageDetailComponent }
         ]
       }
     ]

@@ -1,19 +1,20 @@
 <html>
   <head>
+    <base href="/">
     <title>Bouteille à la mer</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <!-- 1. Load libraries -->
      <!-- Polyfill for older browsers -->
-    <script src="node_modules/core-js/client/shim.min.js"></script>
-    <script src="node_modules/zone.js/dist/zone.js"></script>
-    <script src="node_modules/reflect-metadata/Reflect.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="../node_modules/core-js/client/shim.min.js"></script>
+    <script src="../node_modules/zone.js/dist/zone.js"></script>
+    <script src="../node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="../node_modules/systemjs/dist/system.src.js"></script>
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-    <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.css" media="screen,projection" />
     <!-- Import jQuery before materialize.js -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
@@ -21,14 +22,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <!-- 2. Configure SystemJS -->
-    <script src="systemjs.config.js"></script>
+    <script src="../systemjs.config.js"></script>
     <script>
       System.import('app').catch(function(err){ console.error(err); });
     </script>
-
-    <base href="/">
   </head>
   <!-- 3. Display the application -->
   <body>

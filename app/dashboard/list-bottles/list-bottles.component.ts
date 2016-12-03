@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Animations }               from '../../animations';
-import { Bottle, BottleService }    from './bottle.service';
+import { Bottle }                   from './../bottle.model';
+import { BottleService }            from './../bottle.service';
 import { Observable }               from 'rxjs/Observable';
 
 @Component({
