@@ -2,8 +2,8 @@
   "name": "messageInBottle",
   "version": "1.0.0",
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
-    "startprod": "node server.js",
+    "startdev": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "start: "node server.js",
     "postinstall": "tsc",
     "lite": "lite-server",
     "tsc": "tsc",

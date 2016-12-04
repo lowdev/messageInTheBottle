@@ -9,7 +9,7 @@ import { DashboardComponent }     from './dashboard.component';
 import { ListBottlesModule }      from './list-bottles/list-bottles.module';
 import { MessageDetailModule }    from './message-detail/message-detail.module';
 
-import { FabActionService }        from './fabAction.service';
+import { FabActionService }       from './fabAction.service';
 
 @NgModule({
   imports: [
