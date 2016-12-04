@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Animations }               from '../../animations';
 import { Bottle }                   from './../bottle.model';
 import { BottleService }            from './../bottle.service';
-import { Observable }               from 'rxjs/Observable';
+import { FabActionService }         from '../fabAction.service';
 
 @Component({
   moduleId: module.id,
@@ -17,7 +17,8 @@ export class ListBottlesComponent implements OnInit {
   bottles: Bottle[];
 
   constructor(
-    private service: BottleService
+    private service: BottleService,
+    private fabActionService: FabActionService
   ) {}
 
   ngOnInit() {
@@ -25,5 +26,6 @@ export class ListBottlesComponent implements OnInit {
       .then(bottles => {
         this.bottles = bottles;
     });
+    this.fabActionService.notifyAdd();
   }
 }

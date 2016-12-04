@@ -1,5 +1,6 @@
 import { Component, AfterContentInit, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router }           from '@angular/router';
+import { FabActionService } from './fabAction.service';
 
 @Component({
   moduleId: module.id,
@@ -10,10 +11,18 @@ import { Router } from '@angular/router';
 export class DashboardComponent {
   sidenavActions = new EventEmitter<any>();
   sidenavParams = [];
+  actionButton:string = "add";
 
   constructor(
-    private router: Router
-  ) {}
+    private router: Router,
+    private fabActionService: FabActionService
+  ) {
+    fabActionService.actionChanged.subscribe(
+      item => {
+        console.log("event : " + item['action']);
+        this.actionButton = item['action'];
+      });
+  }
 
   // Menu
   logOut() {

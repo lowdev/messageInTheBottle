@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,
+          EventEmitter, Output }    from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { Animations }               from '../../animations';
 import { Bottle }                   from '../bottle.model';
 import { BottleService }            from '../bottle.service';
+import { FabActionService }         from '../fabAction.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
@@ -20,14 +22,16 @@ export class MessageDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private service: BottleService
-  ) {}
+    private bottleService: BottleService,
+    private fabActionService: FabActionService
+  ) { }
 
   ngOnInit() {
     this.route.params
-      .switchMap((params: Params) => this.service.getBottle(+params['id']))
+      .switchMap((params: Params) => this.bottleService.getBottle(+params['id']))
       .subscribe((bottle: Bottle) => {
         this.bottle = bottle;
       });
+    this.fabActionService.notifyEdit();
   }
 }

@@ -15,7 +15,10 @@ const dashboardRoutes: Routes = [
         children: [
           { path: '', redirectTo: 'bottles', pathMatch: 'full' },
           { path: 'bottles', component: ListBottlesComponent },
-          { path: 'message/:id', component: MessageDetailComponent }
+          {
+            path: 'message/:id',
+            component: MessageDetailComponent
+          }
         ]
       }
     ]
