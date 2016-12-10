@@ -1,0 +1,27 @@
+<ul id="slide-out" class="side-nav blue-grey lighten-5" style="transform: translateX(0%);">
+  <li><div class="userView">
+    <div class="background">
+      <img src="./app/dashboard/asset/air-G-ok2.jpg">
+    </div>
+    <a href="#!user"><img class="circle" src="./app/dashboard/asset/me.jpg"></a>
+    <a href="#!name"><span class="white-text name">Low entropy</span></a>
+    <a href="#!email"><span class="white-text email">lowentropy@gmail.com</span></a>
+  </div></li>
+  <li><a (click)="gotoIntro()"><i class="material-icons">home</i>Home</a></li>
+  <li><a (click)="logOut()"><i class="material-icons">exit_to_app</i>Log out</a></li>
+  <li><div class="divider"></div></li>
+</ul>
+
+<nav>
+  <div class="nav-wrapper blue-grey darken-2">
+    <a href="#" materialize="sideNav" data-activates="slide-out"
+        [materializeActions]="sidenavActions"
+        [materializeParams]="[{edge: 'left', closeOnClick: true, draggable: true}]"
+        class="button-collapse show-on-large">
+      <i class="material-icons">menu</i>
+    </a>
+    <a class="menu-left hide-on-large-only right">
+      <i class="material-icons">map</i>
+    </a>
+  </div>
+</nav>

@@ -1,5 +1,4 @@
 import { Component, AfterContentInit, EventEmitter } from '@angular/core';
-import { Router }           from '@angular/router';
 import { FabActionService } from './fabAction.service';
 
 @Component({
@@ -9,12 +8,9 @@ import { FabActionService } from './fabAction.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  sidenavActions = new EventEmitter<any>();
-  sidenavParams = [];
   actionButton:string = "add";
 
   constructor(
-    private router: Router,
     private fabActionService: FabActionService
   ) {
     fabActionService.actionChanged.subscribe(
@@ -22,20 +18,6 @@ export class DashboardComponent {
         console.log("event : " + item['action']);
         this.actionButton = item['action'];
       });
-  }
-
-  // Menu
-  logOut() {
-    this.router.navigate(['/introduction']);
-  }
-
-  gotoIntro() {
-    this.router.navigate(['/dashboard']);
-  }
-
-  hideMenu(): void {
-    this.sidenavParams = ['hide'];
-    this.sidenavActions.emit('sideNav');
   }
 
   // google maps zoom level

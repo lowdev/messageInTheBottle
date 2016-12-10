@@ -32,7 +32,6 @@
 .fixed-action-btn {
   z-index: 997;
 }
-
-.menu-left {
-  padding: 0 18px;
+menu {
+  padding: 0px;
 }

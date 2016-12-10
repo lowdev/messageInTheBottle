@@ -6,6 +6,7 @@ import { AgmCoreModule }          from 'angular2-google-maps/core';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent }     from './dashboard.component';
 
+import { MenuModule }             from './menu/menu.module';
 import { ListBottlesModule }      from './list-bottles/list-bottles.module';
 import { MessageDetailModule }    from './message-detail/message-detail.module';
 
@@ -16,9 +17,10 @@ import { FabActionService }       from './fabAction.service';
     AgmCoreModule.forRoot(),
     ListBottlesModule,
     DashboardRoutingModule,
-    MessageDetailModule
+    MessageDetailModule,
+    MenuModule
   ],
-  declarations: [ DashboardComponent, MaterializeDirective ],
+  declarations: [ DashboardComponent ],
   exports: [ DashboardComponent ],
   providers: [ FabActionService ]
 })
