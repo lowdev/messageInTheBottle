@@ -15,7 +15,6 @@ export class DashboardComponent {
   ) {
     fabActionService.actionChanged.subscribe(
       item => {
-        console.log("event : " + item['action']);
         this.actionButton = item['action'];
       });
   }

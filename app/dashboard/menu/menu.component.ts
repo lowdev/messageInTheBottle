@@ -1,5 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { Router }                          from '@angular/router';
+import { Location }         from '@angular/common';
+import { Router }           from '@angular/router';
+import { FabActionService } from '../fabAction.service';
 
 @Component({
   moduleId: module.id,
@@ -10,10 +12,27 @@ import { Router }                          from '@angular/router';
 export class MenuComponent implements OnInit {
   sidenavActions = new EventEmitter<any>();
   sidenavParams = [];
+  isMenuButtonDisplayed = true;
+  isBackButtonDisplayed = false;
 
   constructor(
-    private router: Router
-  ) {}
+    private router: Router,
+    private location: Location,
+    private fabActionService: FabActionService
+  ) {
+    fabActionService.actionChanged.subscribe(
+      item => {
+        console.log("event : " + item['action']);
+        let action = item['action'];
+        if ("edit" == action) {
+          this.isMenuButtonDisplayed = false;
+          this.isBackButtonDisplayed = true;
+        } else {
+          this.isMenuButtonDisplayed = true;
+          this.isBackButtonDisplayed = false;
+        }
+      });
+  }
 
   ngOnInit() {
   }

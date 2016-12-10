@@ -1,4 +1,4 @@
-<ul id="slide-out" class="side-nav blue-grey lighten-5" style="transform: translateX(0%);">
+<ul *ngIf="isMenuButtonDisplayed" id="slide-out" class="side-nav blue-grey lighten-5" style="transform: translateX(0%);">
   <li><div class="userView">
     <div class="background">
       <img src="./app/dashboard/asset/air-G-ok2.jpg">
@@ -14,11 +14,15 @@
 
 <nav>
   <div class="nav-wrapper blue-grey darken-2">
-    <a href="#" materialize="sideNav" data-activates="slide-out"
+    <a *ngIf="isMenuButtonDisplayed" href="#" materialize="sideNav" data-activates="slide-out"
         [materializeActions]="sidenavActions"
         [materializeParams]="[{edge: 'left', closeOnClick: true, draggable: true}]"
         class="button-collapse show-on-large">
       <i class="material-icons">menu</i>
+    </a>
+    <a *ngIf="isBackButtonDisplayed"
+        (click)="gotoIntro()" class="button-collapse show-on-large">
+      <i class="material-icons">arrow_back</i>
     </a>
     <a class="menu-left hide-on-large-only right">
       <i class="material-icons">map</i>
