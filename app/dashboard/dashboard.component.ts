@@ -1,5 +1,6 @@
 import { Component, AfterContentInit, EventEmitter } from '@angular/core';
 import { FabActionService } from './fabAction.service';
+import { ViewService }      from './view.service';
 
 @Component({
   moduleId: module.id,
@@ -9,14 +10,24 @@ import { FabActionService } from './fabAction.service';
 })
 export class DashboardComponent {
   actionButton:string = "add";
+  isFullMapView:boolean = false;
 
   constructor(
-    private fabActionService: FabActionService
+    private fabActionService: FabActionService,
+    private viewService:ViewService
   ) {
     fabActionService.actionChanged.subscribe(
+      item => { this.actionButton = item['action']; }
+    );
+    viewService.viewChanged.subscribe(
       item => {
-        this.actionButton = item['action'];
-      });
+        if (item['view'] == 'map') {
+          this.isFullMapView = true;
+        } else {
+          this.isFullMapView = false;
+        }
+      }
+    );
   }
 
   // google maps zoom level

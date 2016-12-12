@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Location }         from '@angular/common';
 import { Router }           from '@angular/router';
 import { FabActionService } from '../fabAction.service';
+import { ViewService }      from '../view.service';
 
 @Component({
   moduleId: module.id,
@@ -15,10 +16,14 @@ export class MenuComponent implements OnInit {
   isMenuButtonDisplayed = true;
   isBackButtonDisplayed = false;
 
+  isMapButtonDisplayed = true;
+  isListButtonDisplayed = false;
+
   constructor(
     private router: Router,
     private location: Location,
-    private fabActionService: FabActionService
+    private fabActionService: FabActionService,
+    private viewService: ViewService
   ) {
     fabActionService.actionChanged.subscribe(
       item => {
@@ -48,5 +53,18 @@ export class MenuComponent implements OnInit {
   hideMenu(): void {
     this.sidenavParams = ['hide'];
     this.sidenavActions.emit('sideNav');
+  }
+
+  switchView(): void {
+    this.isMapButtonDisplayed = !this.isMapButtonDisplayed;
+    this.isListButtonDisplayed = !this.isListButtonDisplayed;
+
+    if (this.isMapButtonDisplayed) {
+      this.viewService.changeToListView();
+    }
+
+    if (this.isListButtonDisplayed) {
+      this.viewService.changeToMapView();
+    }
   }
 }

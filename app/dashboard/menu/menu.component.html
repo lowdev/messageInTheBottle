@@ -24,8 +24,13 @@
         (click)="gotoIntro()" class="button-collapse show-on-large">
       <i class="material-icons">arrow_back</i>
     </a>
-    <a class="menu-left hide-on-large-only right">
+    <a *ngIf="isMapButtonDisplayed"
+        (click)="switchView()" class="menu-left hide-on-large-only right">
       <i class="material-icons">map</i>
+    </a>
+    <a *ngIf="isListButtonDisplayed"
+        (click)="switchView()" class="menu-left hide-on-large-only right">
+      <i class="material-icons">view_list</i>
     </a>
   </div>
 </nav>
