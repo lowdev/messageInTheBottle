@@ -1,13 +1,25 @@
 .sebm-google-map-container {
   height: 100%;
 }
-.main-row {
-  position: fixed;
-  width: 100%;
-  top: 62px;
-  bottom: 0;
-  right: 0;
-  margin-bottom: 0;
+@media all and (min-width: 0px) and (max-width: 600px) {
+  .main-row {
+    position: fixed;
+    width: 100%;
+    top: 58px;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 0;
+  }
+}
+@media all and (min-width: 600px) {
+  .main-row {
+    position: fixed;
+    width: 100%;
+    top: 62px;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 0;
+  }
 }
 .map-col {
   padding-left: 0;
