@@ -17,7 +17,7 @@ import  {AuthGuard }        from '../service/auth.guard';
 
 @NgModule({
   imports: [
-    AgmCoreModule.forRoot(),
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyCWxUOA9ABkBxvPIQe3VFOhukW1eUM1isE' }),
     CommonModule,
     ListBottlesModule,
     DashboardRoutingModule,
@@ -26,7 +26,9 @@ import  {AuthGuard }        from '../service/auth.guard';
   ],
   declarations: [ DashboardComponent ],
   exports: [ DashboardComponent ],
-  providers: [ FabActionService, ViewService, AuthGuard ]
+  providers: [
+    FabActionService, ViewService, AuthGuard
+  ]
 })
 export class DashboardModule {
 }
