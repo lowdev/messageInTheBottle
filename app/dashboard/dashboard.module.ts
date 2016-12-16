@@ -11,8 +11,9 @@ import { MenuModule }             from './menu/menu.module';
 import { ListBottlesModule }      from './list-bottles/list-bottles.module';
 import { MessageDetailModule }    from './message-detail/message-detail.module';
 
-import { FabActionService }       from './fabAction.service';
-import { ViewService }            from './view.service';
+import { FabActionService } from './fabAction.service';
+import { ViewService }      from './view.service';
+import  {AuthGuard }        from '../service/auth.guard';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { ViewService }            from './view.service';
   ],
   declarations: [ DashboardComponent ],
   exports: [ DashboardComponent ],
-  providers: [ FabActionService, ViewService ]
+  providers: [ FabActionService, ViewService, AuthGuard ]
 })
 export class DashboardModule {
 }

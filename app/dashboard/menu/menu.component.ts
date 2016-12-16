@@ -1,6 +1,9 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { Location }         from '@angular/common';
-import { Router }           from '@angular/router';
+import { Location }                        from '@angular/common';
+import { Router }                          from '@angular/router';
+
+import { AuthService } from 'ng2-ui-auth';
+
 import { FabActionService } from '../fabAction.service';
 import { ViewService }      from '../view.service';
 
@@ -23,7 +26,8 @@ export class MenuComponent implements OnInit {
     private router: Router,
     private location: Location,
     private fabActionService: FabActionService,
-    private viewService: ViewService
+    private viewService: ViewService,
+    private auth: AuthService
   ) {
     fabActionService.actionChanged.subscribe(
       item => {
@@ -43,8 +47,12 @@ export class MenuComponent implements OnInit {
   }
 
   logOut() {
-    this.router.navigate(['/introduction']);
-  }
+    this.auth.logout()
+      .subscribe({
+        error: (err: any) => console.log(err),
+        complete: () => this.router.navigate(['/introduction'])
+      });
+    }
 
   gotoIntro() {
     this.router.navigate(['/dashboard']);

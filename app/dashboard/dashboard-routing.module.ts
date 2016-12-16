@@ -5,6 +5,8 @@ import { DashboardComponent }   from './dashboard.component';
 import { ListBottlesComponent } from './list-bottles/list-bottles.component';
 import { MessageDetailComponent }  from './message-detail/message-detail.component';
 
+import  {AuthGuard } from '../service/auth.guard';
+
 const dashboardRoutes: Routes = [
   {
     path: 'dashboard',
@@ -17,7 +19,8 @@ const dashboardRoutes: Routes = [
           { path: 'bottles', component: ListBottlesComponent },
           {
             path: 'message/:id',
-            component: MessageDetailComponent
+            component: MessageDetailComponent,
+            canActivate: [ AuthGuard ]
           }
         ]
       }

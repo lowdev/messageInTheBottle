@@ -37,7 +37,10 @@
     "express": "^4.13.4",
     "@types/core-js": "^0.9.34",
     "@types/node": "^6.0.45",
-    "typescript": "^2.0.3"
+    "typescript": "^2.0.3",
+    "ng2-ui-auth": "5.0.0",
+    "body-parser": "1.15.2",
+    "request": "2.79.0"
   },
   "devDependencies": {
     "concurrently": "^3.0.0",

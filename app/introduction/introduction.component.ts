@@ -1,6 +1,8 @@
 import { Component }  from '@angular/core';
 import { Router }     from '@angular/router';
 
+import { AuthService } from 'ng2-ui-auth';
+
 @Component({
   moduleId: module.id,
   selector: 'introduction',
@@ -10,10 +12,19 @@ import { Router }     from '@angular/router';
 export class IntroductionComponent {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) {}
 
   log() {
     this.router.navigate(['/dashboard/bottles']);
   }
+
+  loginWithFacebook() {
+    this.auth.authenticate('facebook')
+        .subscribe({
+          error: (err: any) => console.log(err),
+          complete: () => this.router.navigateByUrl('/dashboard/bottles')
+        });
+    }
 }
