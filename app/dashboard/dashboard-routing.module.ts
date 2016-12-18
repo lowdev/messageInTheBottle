@@ -1,9 +1,10 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DashboardComponent }   from './dashboard.component';
-import { ListBottlesComponent } from './list-bottles/list-bottles.component';
+import { DashboardComponent }      from './dashboard.component';
+import { ListBottlesComponent }    from './list-bottles/list-bottles.component';
 import { MessageDetailComponent }  from './message-detail/message-detail.component';
+import { MessageEditionComponent } from './message-edition/message-edition.component';
 
 import  {AuthGuard } from '../service/auth.guard';
 
@@ -21,7 +22,12 @@ const dashboardRoutes: Routes = [
             path: 'message/:id',
             component: MessageDetailComponent,
             canActivate: [ AuthGuard ]
-          }
+          },
+          {
+            path: 'message/:id/edit',
+            component: MessageEditionComponent,
+            canActivate: [ AuthGuard ]
+          },
         ]
       }
     ]

@@ -13,6 +13,21 @@
       [zoomControl]="false"
       (mapClick)="mapClicked($event)">
 
+      <sebm-google-map-marker
+          *ngFor="let m of markers; let i = index"
+          (markerClick)="clickedMarker(m.label, i)"
+          [latitude]="m.lat"
+          [longitude]="m.lng"
+          [label]="m.label"
+          [markerDraggable]="m.draggable"
+          (dragEnd)="markerDragEnd(m, $event)">
+
+        <sebm-google-map-info-window>
+          <strong>InfoWindow content</strong>
+        </sebm-google-map-info-window>
+
+      </sebm-google-map-marker>
+
     </sebm-google-map>
   </div>
 
@@ -25,7 +40,7 @@
 </div>
 
 <div class="fixed-action-btn">
-  <a class="btn-floating btn-large waves-effect waves-light red">
+  <a (click)="doAction()" class="btn-floating btn-large waves-effect waves-light red">
     <i class="large material-icons">{{ actionButton }}</i>
   </a>
 </div>

@@ -10,6 +10,7 @@ import { DashboardComponent }     from './dashboard.component';
 import { MenuModule }             from './menu/menu.module';
 import { ListBottlesModule }      from './list-bottles/list-bottles.module';
 import { MessageDetailModule }    from './message-detail/message-detail.module';
+import { MessageEditionModule }    from './message-edition/message-edition.module';
 
 import { FabActionService } from './fabAction.service';
 import { ViewService }      from './view.service';
@@ -22,7 +23,8 @@ import  {AuthGuard }        from '../service/auth.guard';
     ListBottlesModule,
     DashboardRoutingModule,
     MessageDetailModule,
-    MenuModule
+    MenuModule,
+    MessageEditionModule
   ],
   declarations: [ DashboardComponent ],
   exports: [ DashboardComponent ],

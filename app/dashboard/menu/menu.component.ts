@@ -1,6 +1,6 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
-import { Location }                        from '@angular/common';
-import { Router }                          from '@angular/router';
+import { Component, EventEmitter } from '@angular/core';
+import { Location }                from '@angular/common';
+import { Router }                  from '@angular/router';
 
 import { AuthService } from 'ng2-ui-auth';
 
@@ -13,7 +13,7 @@ import { ViewService }      from '../view.service';
   templateUrl: 'menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
   sidenavActions = new EventEmitter<any>();
   sidenavParams = [];
   isMenuButtonDisplayed = true;
@@ -31,19 +31,15 @@ export class MenuComponent implements OnInit {
   ) {
     fabActionService.actionChanged.subscribe(
       item => {
-        console.log("event : " + item['action']);
         let action = item['action'];
-        if ("edit" == action) {
-          this.isMenuButtonDisplayed = false;
-          this.isBackButtonDisplayed = true;
-        } else {
+        if ("add" == action) {
           this.isMenuButtonDisplayed = true;
           this.isBackButtonDisplayed = false;
+        } else {
+          this.isMenuButtonDisplayed = false;
+          this.isBackButtonDisplayed = true;
         }
       });
-  }
-
-  ngOnInit() {
   }
 
   logOut() {
@@ -56,6 +52,10 @@ export class MenuComponent implements OnInit {
 
   gotoIntro() {
     this.router.navigate(['/dashboard']);
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   hideMenu(): void {

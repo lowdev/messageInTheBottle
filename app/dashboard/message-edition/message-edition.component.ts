@@ -6,27 +6,42 @@ import { Bottle }                   from '../bottle.model';
 
 import { BottleService }    from '../bottle.service';
 import { FabActionService } from '../fabAction.service';
+import { ViewService }      from '../view.service';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
   moduleId: module.id,
-  selector: 'message-detail',
-  templateUrl: 'message-detail.component.html',
-  styleUrls: ['./message-detail.component.css'],
+  selector: 'message-edition',
+  templateUrl: 'message-edition.component.html',
   styles: [':host { display: block; }'],
   host: { '[@routeAnimation]': 'true' },
   animations: Animations.page
 })
-export class MessageDetailComponent implements OnInit {
+export class MessageEditionComponent implements OnInit {
   bottle: Bottle;
+  isEditMode: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private bottleService: BottleService,
-    private fabActionService: FabActionService
-  ) {}
+    private fabActionService: FabActionService,
+    private viewService: ViewService
+  ) {
+    viewService.viewChanged.subscribe(
+      item => {
+        console.log("message-detail: " + item['view']);
+        if (item['view'] == 'edit') {
+          fabActionService.notifyValidate();
+          this.isEditMode = true;
+        }
+        if (item['view'] == 'detail') {
+          this.isEditMode = false;
+        }
+      }
+    );
+  }
 
   ngOnInit() {
     this.route.params
@@ -34,6 +49,6 @@ export class MessageDetailComponent implements OnInit {
       .subscribe((bottle: Bottle) => {
         this.bottle = bottle;
       });
-    this.fabActionService.notifyEdit();
+    this.fabActionService.notifyValidate();
   }
 }

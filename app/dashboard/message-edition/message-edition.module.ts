@@ -2,12 +2,12 @@ import { NgModule }     from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule }  from '@angular/forms';
 
-import { MessageDetailComponent } from './message-detail.component';
+import { MessageEditionComponent } from './message-edition.component';
 
 @NgModule({
   imports: [ CommonModule, FormsModule ],
-  declarations: [ MessageDetailComponent ],
-  exports: [ MessageDetailComponent ]
+  declarations: [ MessageEditionComponent ],
+  exports: [ MessageEditionComponent ]
 })
-export class MessageDetailModule {
+export class MessageEditionModule {
 }

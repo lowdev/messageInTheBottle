@@ -1,6 +1,12 @@
-import { Component, AfterContentInit, EventEmitter } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
+import { Router, ActivatedRoute}   from '@angular/router';
+
 import { FabActionService } from './fabAction.service';
 import { ViewService }      from './view.service';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   moduleId: module.id,
@@ -13,6 +19,8 @@ export class DashboardComponent {
   isFullMapView:boolean = false;
 
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     private fabActionService: FabActionService,
     private viewService:ViewService
   ) {
@@ -23,19 +31,31 @@ export class DashboardComponent {
       item => {
         if (item['view'] == 'map') {
           this.isFullMapView = true;
-        } else {
+        }
+
+        if (item['view'] == 'list') {
           this.isFullMapView = false;
         }
       }
     );
   }
 
+  doAction(): void {
+    if (this.actionButton == "edit") {
+      this.router.navigate([this.router.url + '/edit']);
+    }
+    if (this.actionButton == "done") {
+      const url: string = this.router.url;
+      this.router.navigate([ url.substring(0, url.lastIndexOf('/'))]);
+    }
+  }
+
   // google maps zoom level
-  zoom: number = 8;
+  zoom: number = 15;
 
   // initial center position for the map
-  lat: number = 51.673858;
-  lng: number = 7.815982;
+  lat: number = 48.8986394;
+  lng: number = 2.3042683;
 
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`)
@@ -54,10 +74,10 @@ export class DashboardComponent {
 
   markers: marker[] = [
 	  {
-		  lat: 51.673858,
-		  lng: 7.815982,
+		  lat: 48.9022867,
+		  lng: 2.3067607,
 		  label: 'A',
-		  draggable: true
+		  draggable: false
 	  },
 	  {
 		  lat: 51.373858,
@@ -69,7 +89,7 @@ export class DashboardComponent {
 		  lat: 51.723858,
 		  lng: 7.895982,
 		  label: 'C',
-		  draggable: true
+		  draggable: false
 	  }
   ]
 }

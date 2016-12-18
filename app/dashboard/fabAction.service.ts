@@ -11,4 +11,8 @@ export class FabActionService {
   notifyEdit(): void {
     this.actionChanged.emit({ "action": "edit" });
   }
+
+  notifyValidate(): void {
+    this.actionChanged.emit({ "action": "done" });
+  }
 }
