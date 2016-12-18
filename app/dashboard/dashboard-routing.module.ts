@@ -20,8 +20,7 @@ const dashboardRoutes: Routes = [
           { path: 'bottles', component: ListBottlesComponent },
           {
             path: 'message/:id',
-            component: MessageDetailComponent,
-            canActivate: [ AuthGuard ]
+            component: MessageDetailComponent
           },
           {
             path: 'message/:id/edit',
