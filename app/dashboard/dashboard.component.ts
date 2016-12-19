@@ -41,6 +41,9 @@ export class DashboardComponent {
   }
 
   doAction(): void {
+    if (this.actionButton == "add") {
+      this.router.navigate(['dashboard/bottle/add']);
+    }
     if (this.actionButton == "edit") {
       this.router.navigate([this.router.url + '/edit']);
     }

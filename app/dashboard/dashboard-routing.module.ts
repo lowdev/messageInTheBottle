@@ -27,6 +27,11 @@ const dashboardRoutes: Routes = [
             component: MessageEditionComponent,
             canActivate: [ AuthGuard ]
           },
+          {
+            path: 'bottle/add',
+            component: MessageEditionComponent,
+            canActivate: [ AuthGuard ]
+          }
         ]
       }
     ]
