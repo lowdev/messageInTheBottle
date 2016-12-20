@@ -34,6 +34,8 @@
 .cards-col {
   height: 100%;
   overflow-y: scroll;
+  z-index: 2;
+  background: rgba(255, 255, 255, .5);
 }
 .card-info, .card__meta a {
   display: inline-flex;
