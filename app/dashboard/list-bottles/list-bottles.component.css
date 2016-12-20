@@ -1,0 +1,12 @@
+
+.cards-container {
+  -webkit-column-break-inside: avoid;
+            page-break-inside: avoid;
+                 break-inside: avoid;
+  column-count: 2;
+}
+@media all and (min-width: 0px) and (max-width: 600px) {
+  .cards-container {
+    column-count: 1;
+  }
+}

@@ -1,1 +1,6 @@
-
+.card {
+    display: inline-block;
+    overflow: visible;
+    margin-left: 5px;
+    margin-right: 5px;
+}

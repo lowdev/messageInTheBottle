@@ -9,6 +9,7 @@ import { FabActionService }         from '../fabAction.service';
   selector: 'list-bottles',
   providers: [ BottleService ],
   templateUrl: 'list-bottles.component.html',
+  styleUrls: ['./list-bottles.component.css'],
   styles: [':host { display: block; }'],
   host: { '[@routeAnimation]': 'true' },
   animations: Animations.page

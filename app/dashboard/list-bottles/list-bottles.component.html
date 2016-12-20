@@ -1,13 +1,11 @@
 <div class="row">
   <!-- Cards container -->
-  <div class="col s12 m12 l12">
-    <div class="row">
-      <!-- Col: Card -->
-      <div class="col s12 m6 l5" *ngFor="let bottle of bottles">
+  <div class="col s12 cards-container">
+      <!-- Card -->
+      <div *ngFor="let bottle of bottles">
         <bottle-card [bottle]="bottle"></bottle-card>
       </div>
-      <!-- End of col -->
-    </div>
+      <!-- Card -->
   </div>
 
 </div>
