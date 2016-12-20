@@ -1,10 +1,7 @@
 <menu></menu>
 
-<div class="main-row row">
-  <div class="map-col col L5"
-    [ngClass]="{
-      'm0': !isFullMapView, 'm12': isFullMapView,
-      's0': !isFullMapView, 's12': isFullMapView }">
+<div class="row main-row flex-s">
+  <div class="map-col col m0 s0 L5">
     <sebm-google-map
       [latitude]="lat"
       [longitude]="lng"
@@ -31,10 +28,8 @@
     </sebm-google-map>
   </div>
 
-  <div class="cards-col col L7"
-    [ngClass]="{
-      'm12': !isFullMapView, 'm0': isFullMapView,
-      's12': !isFullMapView, 's0': isFullMapView }">
+  <div class="cards-col col s12 m12 L7"
+    [ngClass]="{ 'hide': isFullMapView }">
     <router-outlet></router-outlet>
   </div>
 </div>

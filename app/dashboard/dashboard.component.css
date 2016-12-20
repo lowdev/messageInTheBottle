@@ -1,6 +1,12 @@
 .sebm-google-map-container {
   height: 100%;
 }
+@media (max-width: 992px) {
+  .flex-s {
+    display: flex;
+    flex-direction: column; /* Stack on top */
+  }
+}
 @media all and (min-width: 0px) and (max-width: 600px) {
   .main-row {
     position: fixed;
