@@ -56,10 +56,12 @@ export class MenuComponent implements OnInit {
   }
 
   logOut() {
-    this.auth.logout()
-      .subscribe({
+    this.auth.logout().subscribe({
         error: (err: any) => console.log(err),
-        complete: () => this.router.navigate(['/introduction'])
+        complete: () => {
+          this.facebookUser = null;
+          this.router.navigate(['/introduction']);
+        }
       });
     }
 
