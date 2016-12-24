@@ -6,7 +6,6 @@
     <div *ngIf="facebookUser">
       <a href="#!user"><img class="circle" src="{{ facebookUser.picture }}"></a>
       <a href="#!name"><span class="white-text name">{{ facebookUser.displayName }}</span></a>
-      <br />
     </div>
   </div></li>
   <li><a (click)="gotoIntro()"><i class="material-icons">home</i>Home</a></li>
@@ -32,7 +31,7 @@
     </a>
     <a *ngIf="isListButtonDisplayed"
         (click)="switchView()" class="menu-left hide-on-large-only right">
-      <i class="material-icons">view_list</i>
+      <i class="material-icons">view_module</i>
     </a>
   </div>
 </nav>
