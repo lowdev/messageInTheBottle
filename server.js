@@ -26,10 +26,39 @@ app.post('/auth/facebook', function(req, res) {
     if (response.statusCode !== 200) {
       return res.status(500).send({ message: accessToken.error.message });
     }
-    console.log("accessToken: " + accessToken.access_token);
+
     return res.status(200).send({ access_token: accessToken.access_token });
   });
 });
+
+app.get('/user/facebook', function(req, res) {
+  const fields = ['id', 'email', 'first_name', 'last_name', 'link', 'name'];
+  const graphApiUrl = 'https://graph.facebook.com/v2.5/me?fields=' + fields.join(',');
+  const accessToken = req.header("Authorization").split(' ')[1];
+
+  var params = {
+    fields: "id,email,name,picture",
+    access_token: accessToken,
+    token_type: "bearer",
+    expires_in: "5178000.0"
+  };
+
+  request.get({ url: graphApiUrl, qs: params, json: true }, function(err, response, profile) {
+    if (response.statusCode !== 200) {
+      return res.status(500).send({ message: profile.error.message });
+    }
+
+    var user = {
+      facebook: profile.id,
+      picture: 'https://graph.facebook.com/v2.3/' + profile.id + '/picture?type=normal',
+      displayName: profile.name
+    };
+
+    return res.status(200).send(user);
+  });
+  // End request
+});
+
 app.all('*', function (req, res) {
 	res.status(200).sendFile(path.join(__dirname, '/index.html'));
 });

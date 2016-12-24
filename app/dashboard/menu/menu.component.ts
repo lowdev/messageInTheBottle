@@ -1,11 +1,12 @@
-import { Component, EventEmitter } from '@angular/core';
-import { Location }                from '@angular/common';
-import { Router }                  from '@angular/router';
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Location }                        from '@angular/common';
+import { Router }                          from '@angular/router';
 
 import { AuthService } from 'ng2-ui-auth';
 
-import { FabActionService } from '../fabAction.service';
-import { ViewService }      from '../view.service';
+import { FabActionService }         from '../fabAction.service';
+import { ViewService }              from '../view.service';
+import { FacebookMe, FacebookUser } from '../../service/facebook-me.service';
 
 @Component({
   moduleId: module.id,
@@ -13,7 +14,7 @@ import { ViewService }      from '../view.service';
   templateUrl: 'menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
   sidenavActions = new EventEmitter<any>();
   sidenavParams = [];
   isMenuButtonDisplayed = true;
@@ -22,12 +23,15 @@ export class MenuComponent {
   isMapButtonDisplayed = true;
   isListButtonDisplayed = false;
 
+  facebookUser: FacebookUser;
+
   constructor(
     private router: Router,
     private location: Location,
     private fabActionService: FabActionService,
     private viewService: ViewService,
-    private auth: AuthService
+    private auth: AuthService,
+    private facebookMe: FacebookMe
   ) {
     fabActionService.actionChanged.subscribe(
       item => {
@@ -40,6 +44,15 @@ export class MenuComponent {
           this.isBackButtonDisplayed = true;
         }
       });
+
+      if (this.auth.isAuthenticated()) {
+        this.facebookMe.getUser().subscribe(
+          facebookUser => this.facebookUser = facebookUser
+        );
+      }
+  }
+
+  ngOnInit() {
   }
 
   logOut() {
