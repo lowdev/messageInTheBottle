@@ -1,13 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router }            from '@angular/router';
+import { MarkerService } from './marker.service';
+import { Marker } from './marker.model';
 
 @Component({
   moduleId: module.id,
   selector: 'map',
+  providers: [ MarkerService ],
   templateUrl: 'map.component.html',
   styleUrls: ['./map.component.css']
-
 })
-export class MapComponent {
+export class MapComponent implements OnInit {
   // google maps zoom level
   zoom: number = 15;
 
@@ -15,22 +18,8 @@ export class MapComponent {
   lat: number = 48.8986394;
   lng: number = 2.3042683;
 
-  clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker: ${label || index}`)
-  }
-
-  mapClicked($event: MouseEvent) {
-    /*this.markers.push({
-      lat: $event.coords.lat,
-      lng: $event.coords.lng
-    });*/
-  }
-
-  markerDragEnd(m: marker, $event: MouseEvent) {
-    console.log('dragEnd', m, $event);
-  }
-
-  markers: marker[] = [
+  markers: Marker[];
+  /*markers: Marker[] = [
 	  {
 		  lat: 48.9022867,
 		  lng: 2.3067607,
@@ -49,12 +38,37 @@ export class MapComponent {
 		  label: 'C',
 		  draggable: false
 	  }
-  ]
-}
+  ]*/
 
-interface marker {
-	lat: number;
-	lng: number;
-	label?: string;
-	draggable: boolean;
+  constructor(
+    private service: MarkerService,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    this.service.getMarkers()
+      .then(markers => {
+        this.markers = markers;
+    });
+  }
+
+  clickedMarker(id: string, index: number) {
+    console.log(`clicked the marker: ${id || index}`);
+    this.displayDetail(id);
+  }
+
+  private displayDetail(id: string) {
+    this.router.navigate(['/dashboard/message/' + id]);
+  }
+
+  mapClicked($event: MouseEvent) {
+    /*this.markers.push({
+      lat: $event.coords.lat,
+      lng: $event.coords.lng
+    });*/
+  }
+
+  markerDragEnd(m: Marker, $event: MouseEvent) {
+    console.log('dragEnd', m, $event);
+  }
 }

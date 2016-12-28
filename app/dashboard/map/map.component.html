@@ -7,17 +7,19 @@
   (mapClick)="mapClicked($event)">
 
   <sebm-google-map-marker
-      *ngFor="let m of markers; let i = index"
-      (markerClick)="clickedMarker(m.label, i)"
-      [latitude]="m.lat"
-      [longitude]="m.lng"
-      [label]="m.label"
-      [markerDraggable]="m.draggable"
-      (dragEnd)="markerDragEnd(m, $event)">
+    *ngFor="let m of markers; let i = index"
+    (markerClick)="clickedMarker(m.id, i)"
+    [latitude]="m.lat"
+    [longitude]="m.lng"
+    [label]="m.label"
+    [markerDraggable]="m.draggable"
+    (dragEnd)="markerDragEnd(m, $event)">
 
+    <!--
     <sebm-google-map-info-window>
       <strong>InfoWindow content</strong>
     </sebm-google-map-info-window>
+    -->
 
   </sebm-google-map-marker>
 
