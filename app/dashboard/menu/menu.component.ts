@@ -21,7 +21,6 @@ export class MenuComponent implements OnInit {
   isBackButtonDisplayed = false;
 
   isMapButtonDisplayed = true;
-  isListButtonDisplayed = false;
 
   facebookUser: FacebookUser;
 
@@ -79,15 +78,12 @@ export class MenuComponent implements OnInit {
   }
 
   switchView(): void {
-    this.isMapButtonDisplayed = !this.isMapButtonDisplayed;
-    this.isListButtonDisplayed = !this.isListButtonDisplayed;
-
-    if (this.isMapButtonDisplayed) {
+    if (!this.isMapButtonDisplayed) {
       this.viewService.changeToListView();
-    }
-
-    if (this.isListButtonDisplayed) {
+    } else {
       this.viewService.changeToMapView();
     }
+
+    this.isMapButtonDisplayed = !this.isMapButtonDisplayed;
   }
 }

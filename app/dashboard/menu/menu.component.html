@@ -29,7 +29,7 @@
         (click)="switchView()" class="menu-left hide-on-large-only right">
       <i class="material-icons">map</i>
     </a>
-    <a *ngIf="isListButtonDisplayed"
+    <a *ngIf="!isMapButtonDisplayed"
         (click)="switchView()" class="menu-left hide-on-large-only right">
       <i class="material-icons">view_module</i>
     </a>
