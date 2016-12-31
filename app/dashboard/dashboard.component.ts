@@ -51,5 +51,7 @@ export class DashboardComponent {
       const url: string = this.router.url;
       this.router.navigate([ url.substring(0, url.lastIndexOf('/'))]);
     }
+
+    this.viewService.changeToListView();
   }
 }
