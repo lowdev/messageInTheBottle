@@ -42,13 +42,26 @@ export class MenuComponent implements OnInit {
           this.isMenuButtonDisplayed = false;
           this.isBackButtonDisplayed = true;
         }
-      });
-
-      if (this.auth.isAuthenticated()) {
-        this.facebookMe.getUser().subscribe(
-          facebookUser => this.facebookUser = facebookUser
-        );
       }
+    );
+
+    viewService.viewChanged.subscribe(
+      item => {
+        if (item['view'] == 'map') {
+          this.isMapButtonDisplayed = false;
+        }
+
+        if (item['view'] == 'list') {
+          this.isMapButtonDisplayed = true;
+        }
+      }
+    );
+
+    if (this.auth.isAuthenticated()) {
+      this.facebookMe.getUser().subscribe(
+        facebookUser => this.facebookUser = facebookUser
+      );
+    }
   }
 
   ngOnInit() {
@@ -83,7 +96,5 @@ export class MenuComponent implements OnInit {
     } else {
       this.viewService.changeToMapView();
     }
-
-    this.isMapButtonDisplayed = !this.isMapButtonDisplayed;
   }
 }
