@@ -5,6 +5,7 @@ import { CommonModule }  from '@angular/common';
 import { MapComponent } from './map.component';
 
 import { MarkerService } from './marker.service';
+import { MapService }    from './map.service';
 
 @NgModule({
   imports: [
@@ -13,7 +14,7 @@ import { MarkerService } from './marker.service';
   ],
   declarations: [ MapComponent ],
   exports: [ MapComponent ],
-  providers: [ MarkerService ]
+  providers: [ MarkerService, MapService ]
 })
 export class MapModule {
 }

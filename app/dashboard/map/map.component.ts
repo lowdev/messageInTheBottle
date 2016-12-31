@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
 import { MarkerService } from './marker.service';
+import { MapService }    from './map.service';
 import { Marker } from './marker.model';
 
 @Component({
@@ -19,31 +20,20 @@ export class MapComponent implements OnInit {
   lng: number = 2.3042683;
 
   markers: Marker[];
-  /*markers: Marker[] = [
-	  {
-		  lat: 48.9022867,
-		  lng: 2.3067607,
-		  label: 'A',
-		  draggable: false
-	  },
-	  {
-		  lat: 51.373858,
-		  lng: 7.215982,
-		  label: 'B',
-		  draggable: false
-	  },
-	  {
-		  lat: 51.723858,
-		  lng: 7.895982,
-		  label: 'C',
-		  draggable: false
-	  }
-  ]*/
 
   constructor(
     private service: MarkerService,
+    private mapService: MapService,
     private router: Router
-  ) {}
+  ) {
+    mapService.markerRequested.subscribe(
+      item => {
+        this.service.getMarker(item['id']).then(marker => {
+            this.markers.push(marker);
+        });
+      }
+    );
+  }
 
   ngOnInit() {
     this.service.getMarkers()
