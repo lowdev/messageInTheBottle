@@ -1,12 +1,15 @@
 import { Component, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute}   from '@angular/router';
 
+import { AuthService }      from 'ng2-ui-auth';
 import { FabActionService } from './fabAction.service';
 import { ViewService }      from './view.service';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
+
+declare var Materialize:any;
 
 @Component({
   moduleId: module.id,
@@ -22,7 +25,8 @@ export class DashboardComponent {
     private router: Router,
     private route: ActivatedRoute,
     private fabActionService: FabActionService,
-    private viewService:ViewService
+    private viewService:ViewService,
+    private authService:AuthService
   ) {
     fabActionService.actionChanged.subscribe(
       item => { this.actionButton = item['action']; }
@@ -41,6 +45,11 @@ export class DashboardComponent {
   }
 
   doAction(): void {
+    if (!this.authService.isAuthenticated()) {
+      Materialize.toast("Vous n'êtes pas connecté", 4000);
+      return;
+    }
+
     if (this.actionButton == "add") {
       this.router.navigate(['dashboard/bottle/add']);
     }
