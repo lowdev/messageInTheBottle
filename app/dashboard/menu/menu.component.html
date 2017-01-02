@@ -8,8 +8,9 @@
       <a href="#!name"><span class="white-text name">{{ facebookUser.displayName }}</span></a>
     </div>
   </div></li>
-  <li><a (click)="gotoIntro()"><i class="material-icons">home</i>Home</a></li>
-  <li><a (click)="logOut()"><i class="material-icons">exit_to_app</i>Log out</a></li>
+  <li *ngIf="!isLogged()"><a (click)="gotoLogin()"><i class="material-icons">account_circle</i>Connextion</a></li>
+  <li><a (click)="gotoHome()"><i class="material-icons">home</i>Page d'accueil</a></li>
+  <li *ngIf="isLogged()"><a (click)="logOut()"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
   <li><div class="divider"></div></li>
 </ul>
 
@@ -22,7 +23,7 @@
       <i class="material-icons">menu</i>
     </a>
     <a *ngIf="isBackButtonDisplayed"
-        (click)="gotoIntro()" class="button-collapse show-on-large">
+        (click)="gotoHome()" class="button-collapse show-on-large">
       <i class="material-icons">arrow_back</i>
     </a>
     <a *ngIf="isMapButtonDisplayed"
@@ -31,7 +32,7 @@
     </a>
     <a *ngIf="!isMapButtonDisplayed"
         (click)="switchView()" class="menu-left hide-on-large-only right">
-      <i class="material-icons">view_module</i>
+      <i class="material-icons">dashboard</i>
     </a>
   </div>
 </nav>

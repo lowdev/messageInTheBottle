@@ -69,16 +69,24 @@ export class MenuComponent implements OnInit {
 
   logOut() {
     this.auth.logout().subscribe({
-        error: (err: any) => console.log(err),
-        complete: () => {
-          this.facebookUser = null;
-          this.router.navigate(['/introduction']);
-        }
-      });
-    }
+      error: (err: any) => console.log(err),
+      complete: () => {
+        this.facebookUser = null;
+        this.router.navigate(['/introduction']);
+      }
+    });
+  }
 
-  gotoIntro() {
+  isLogged() {
+    return this.auth.isAuthenticated();
+  }
+
+  gotoHome() {
     this.router.navigate(['/dashboard']);
+  }
+
+  gotoLogin() {
+    this.router.navigate(['/introduction']);
   }
 
   goBack() {
