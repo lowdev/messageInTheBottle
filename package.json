@@ -40,7 +40,8 @@
     "typescript": "^2.0.3",
     "ng2-ui-auth": "5.0.0",
     "body-parser": "1.15.2",
-    "request": "2.79.0"
+    "request": "2.79.0",
+    "markerclustererplus ": "2.1.4"
   },
   "devDependencies": {
     "concurrently": "^3.0.0",

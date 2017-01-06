@@ -1,6 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Marker }                   from './marker.model'
 
+declare var google: any;
+
 let MARKERS: Marker[] = [
   {
     id: 11,
@@ -52,15 +54,35 @@ let fullMarkersPromise = Promise.resolve(FULL_MARKERS);
 export class MarkerService {
   markerRequested: EventEmitter<any> = new EventEmitter();
 
-  getMarkers(): Promise<Marker[]> {
-    return markersPromise;
+  getMarkers(googleMap:any): Promise<any[]> {
+    return markersPromise.then(marker => {
+       return this.toGoogleMarkers(marker, googleMap);
+     });
   }
-  getMarker(id: number | string): Promise<Marker> {
+  getMarker(id: number | string, googleMap:any): Promise<Marker> {
     return fullMarkersPromise
-      .then(markers => markers.find(marker => marker.id === +id));
+      .then(markers => this.toGoogleMarker(markers.find(marker => marker.id === +id), googleMap));
   }
-  loadMarker(id: number | String): void {
-    console.log("id: " + id);
-    this.markerRequested.emit({ "action": "4" });
+
+  private toGoogleMarkers(markers: Marker[], googleMap: any): any[] {
+    return markers.map(marker => this.toGoogleMarker(marker, googleMap));
   }
+
+  private toGoogleMarker(marker: Marker, googleMap: any): any {
+     let googleMarker = new google.maps.Marker({
+       title: marker.label,
+       position: { lat: marker.lat, lng: marker.lng },
+       map: googleMap
+     });
+
+     /*var infowindow = new google.maps.InfoWindow({
+       content: '<h4>' +  table.name + '</h4><p>' + table.address + '</p>'
+     });
+
+     marker.addListener('click', function() {
+       infowindow.open(googleMap, marker);
+     });*/
+
+     return googleMarker;
+   }
 }
