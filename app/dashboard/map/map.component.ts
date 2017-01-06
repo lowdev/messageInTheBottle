@@ -19,7 +19,6 @@ export class MapComponent {
   map: any;
   markerClusterer: any;
 
-
   // google maps zoom level
   zoom: number = 15;
 
@@ -35,6 +34,10 @@ export class MapComponent {
     mapService.markerRequested.subscribe(
       item => {
         this.service.getMarker(item['id'], this.map).then(marker => {
+          if (this.isExist(marker)) {
+            return;
+          }
+
           this.markerClusterer.addMarker(marker, true);
           this.markerClusterer.setIgnoreHidden(true);
           this.markerClusterer.repaint();
@@ -69,5 +72,21 @@ export class MapComponent {
     this.service.getMarkers(m).then(markers => {
       this.markerClusterer =  new MarkerClusterer(m, markers, MarkerClusterOptions.get());
     });
+  }
+
+  isExist(marker:any): boolean {
+    var clusters = this.markerClusterer.getClusters(); // use the get clusters method which returns an array of objects
+
+    for (let i = 0, l = clusters.length; i < l; i++) {
+      for (let j = 0, le = clusters[i].markers_.length; j < le; j++) {
+        let markerFromCluster = clusters[i].markers_[j]; // <-- Here's your clustered marker
+        if (markerFromCluster.getPosition().lat() == marker.getPosition().lat()
+          && markerFromCluster.getPosition().lng() == marker.getPosition().lng()) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 }
