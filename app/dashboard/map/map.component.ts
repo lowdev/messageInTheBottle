@@ -33,21 +33,18 @@ export class MapComponent {
   ) {
     mapService.markerRequested.subscribe(
       item => {
-        this.service.getMarker(item['id'], this.map).then(marker => {
+        this.service.getMarker(item['id']).then(marker => {
           if (this.isExist(marker)) {
-            this.centerToMarker(marker);
+            this.centerFromMarker(marker);
             return;
           }
 
-          var mainThis = this;
-          marker.addListener('click', function(event) {
-            mainThis.center(event.latLng);
-          });
+          marker.addListener('click', event => this.center(event.latLng));
 
           this.markerClusterer.addMarker(marker, true);
           this.markerClusterer.setIgnoreHidden(true);
           this.markerClusterer.repaint();
-          this.centerToMarker(marker);
+          this.centerFromMarker(marker);
         });
       }
     );
@@ -76,39 +73,29 @@ export class MapComponent {
 
   mapLoaded(m) {
     console.log('map loaded!', m);
+    this.map = m;
+    this.markerClusterer =  new MarkerClusterer(m, [], MarkerClusterOptions.get());
 
-    this.service.getMarkers(m).then(markers => {
-      markers.forEach(function (marker) {
-        marker.addListener('click', function(event) {
-          this.center(event.latLng);
-        });
+    this.service.getMarkers().then(markers => {
+      markers.forEach(marker => {
+        marker.addListener('click', event => this.center(event.latLng));
+        this.markerClusterer.addMarker(marker, true);
       });
-      this.markerClusterer =  new MarkerClusterer(m, markers, MarkerClusterOptions.get());
     });
   }
 
   isExist(marker:any): boolean {
-    var clusters = this.markerClusterer.getClusters(); // use the get clusters method which returns an array of objects
-
-    for (let i = 0, l = clusters.length; i < l; i++) {
-      for (let j = 0, le = clusters[i].markers_.length; j < le; j++) {
-        let markerFromCluster = clusters[i].markers_[j]; // <-- Here's your clustered marker
-        if (markerFromCluster.getPosition().lat() == marker.getPosition().lat()
-          && markerFromCluster.getPosition().lng() == marker.getPosition().lng()) {
-          return true;
-        }
-      }
-    }
-
-    return false;
+    return this.markerClusterer.getMarkers().find(markerFromCluster =>
+      markerFromCluster.getPosition().lat() == marker.getPosition().lat()
+      && markerFromCluster.getPosition().lng() == marker.getPosition().lng());
   }
 
-  center(latLng: any) {
+  private center(latLng: any) {
     this.map.panTo(latLng);
     this.map.setZoom(18);
   }
 
-  centerToMarker(marker: any) {
+  private centerFromMarker(marker: any) {
     let position = marker.getPosition();
     let latlng = new google.maps.LatLng(position.lat(), position.lng());
     this.center(latlng);

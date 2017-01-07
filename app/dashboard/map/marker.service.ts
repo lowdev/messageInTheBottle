@@ -54,25 +54,24 @@ let fullMarkersPromise = Promise.resolve(FULL_MARKERS);
 export class MarkerService {
   markerRequested: EventEmitter<any> = new EventEmitter();
 
-  getMarkers(googleMap:any): Promise<any[]> {
+  getMarkers(): Promise<any[]> {
     return markersPromise.then(marker => {
-       return this.toGoogleMarkers(marker, googleMap);
+       return this.toGoogleMarkers(marker);
      });
   }
-  getMarker(id: number | string, googleMap:any): Promise<any> {
+  getMarker(id: number | string): Promise<any> {
     return fullMarkersPromise
-      .then(markers => this.toGoogleMarker(markers.find(marker => marker.id === +id), googleMap));
+      .then(markers => this.toGoogleMarker(markers.find(marker => marker.id === +id)));
   }
 
-  private toGoogleMarkers(markers: Marker[], googleMap: any): any[] {
-    return markers.map(marker => this.toGoogleMarker(marker, googleMap));
+  private toGoogleMarkers(markers: Marker[]): any[] {
+    return markers.map(marker => this.toGoogleMarker(marker));
   }
 
-  private toGoogleMarker(marker: Marker, googleMap: any): any {
+  private toGoogleMarker(marker: Marker): any {
     let googleMarker = new google.maps.Marker({
       title: marker.label,
-      position: { lat: marker.lat, lng: marker.lng },
-      map: googleMap
+      position: { lat: marker.lat, lng: marker.lng }
     });
 
      /*var infowindow = new google.maps.InfoWindow({
