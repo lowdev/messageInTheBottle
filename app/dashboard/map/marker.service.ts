@@ -59,7 +59,7 @@ export class MarkerService {
        return this.toGoogleMarkers(marker, googleMap);
      });
   }
-  getMarker(id: number | string, googleMap:any): Promise<Marker> {
+  getMarker(id: number | string, googleMap:any): Promise<any> {
     return fullMarkersPromise
       .then(markers => this.toGoogleMarker(markers.find(marker => marker.id === +id), googleMap));
   }
@@ -69,11 +69,11 @@ export class MarkerService {
   }
 
   private toGoogleMarker(marker: Marker, googleMap: any): any {
-     let googleMarker = new google.maps.Marker({
-       title: marker.label,
-       position: { lat: marker.lat, lng: marker.lng },
-       map: googleMap
-     });
+    let googleMarker = new google.maps.Marker({
+      title: marker.label,
+      position: { lat: marker.lat, lng: marker.lng },
+      map: googleMap
+    });
 
      /*var infowindow = new google.maps.InfoWindow({
        content: '<h4>' +  table.name + '</h4><p>' + table.address + '</p>'

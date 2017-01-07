@@ -35,12 +35,19 @@ export class MapComponent {
       item => {
         this.service.getMarker(item['id'], this.map).then(marker => {
           if (this.isExist(marker)) {
+            this.centerToMarker(marker);
             return;
           }
+
+          var mainThis = this;
+          marker.addListener('click', function(event) {
+            mainThis.center(event.latLng);
+          });
 
           this.markerClusterer.addMarker(marker, true);
           this.markerClusterer.setIgnoreHidden(true);
           this.markerClusterer.repaint();
+          this.centerToMarker(marker);
         });
       }
     );
@@ -48,6 +55,7 @@ export class MapComponent {
 
   clickedMarker(id: string, index: number) {
     console.log(`clicked the marker: ${id || index}`);
+    //this.map.setCenter(marker.getPosition());
     this.displayDetail(id);
   }
 
@@ -70,6 +78,11 @@ export class MapComponent {
     console.log('map loaded!', m);
 
     this.service.getMarkers(m).then(markers => {
+      markers.forEach(function (marker) {
+        marker.addListener('click', function(event) {
+          this.center(event.latLng);
+        });
+      });
       this.markerClusterer =  new MarkerClusterer(m, markers, MarkerClusterOptions.get());
     });
   }
@@ -88,5 +101,16 @@ export class MapComponent {
     }
 
     return false;
+  }
+
+  center(latLng: any) {
+    this.map.panTo(latLng);
+    this.map.setZoom(18);
+  }
+
+  centerToMarker(marker: any) {
+    let position = marker.getPosition();
+    let latlng = new google.maps.LatLng(position.lat(), position.lng());
+    this.center(latlng);
   }
 }
