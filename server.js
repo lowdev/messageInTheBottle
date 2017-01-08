@@ -70,6 +70,11 @@ app.get('/markers', (req, res) => {
   return res.status(200).json(toMarkers(mockedData.BOTTLES));
 });
 
+app.get('/marker/:id', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  return res.status(200).json(toMarker(findMarker(req.params.id)));
+});
+
 function toMarker(bottle) {
   return {
     id: bottle.id,
@@ -83,10 +88,24 @@ function toMarker(bottle) {
 function toMarkers(bottles) {
   var markers = [];
   for (var i = 0; i < bottles.length; i++) {
+    if (i == 2) {
+      break;
+    }
+
     markers.push(toMarker(bottles[i]));
   }
 
   return markers;
+}
+
+function findMarker(id) {
+  var bottles = mockedData.BOTTLES;
+  for (var i = 0; i < bottles.length; i++) {
+    if (bottles[i].id == id) {
+      return bottles[i];
+    }
+  }
+  return null;
 }
 
 app.all('*', function (req, res) {

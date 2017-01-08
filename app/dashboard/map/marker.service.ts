@@ -24,8 +24,10 @@ export class MarkerService {
                     .toPromise();
   }
   getMarker(id: number | string): Promise<any> {
-    return this.getMarkers()
-      .then(markers => this.toGoogleMarker(markers.find(marker => marker.id === +id)));
+    return this.http.get("/marker/" + id)
+                    .map(res => res.json())
+                    .map(marker => this.toGoogleMarker(marker))
+                    .toPromise();
   }
 
   private toGoogleMarkers(markers: Marker[]): any[] {
