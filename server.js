@@ -65,6 +65,29 @@ app.get('/bottles', (req, res) => {
   return res.status(200).json(mockedData.BOTTLES);
 });
 
+app.get('/markers', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  return res.status(200).json(toMarkers(mockedData.BOTTLES));
+});
+
+function toMarker(bottle) {
+  return {
+    id: bottle.id,
+    lat: bottle.lat,
+    lng: bottle.lng,
+    label: bottle.title,
+    draggable: false
+  };
+}
+
+function toMarkers(bottles) {
+  var markers = [];
+  for (var i = 0; i < bottles.length; i++) {
+    markers.push(toMarker(bottles[i]));
+  }
+
+  return markers;
+}
 
 app.all('*', function (req, res) {
 	res.status(200).sendFile(path.join(__dirname, '/index.html'));

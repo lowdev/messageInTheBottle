@@ -1,66 +1,30 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Marker }                   from './marker.model'
+import { Http, Response, Headers }  from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { Marker } from './marker.model'
+
+import 'rxjs/add/operator/toPromise';
 
 declare var google: any;
-
-let MARKERS: Marker[] = [
-  {
-    id: 11,
-    lat: 48.9022867,
-    lng: 2.3067607,
-    label: 'A',
-    draggable: false
-  }
-]
-
-let FULL_MARKERS: Marker[] = [
-  {
-    id: 11,
-    lat: 48.9022867,
-    lng: 2.3067607,
-    label: 'A',
-    draggable: false
-  }, {
-    id: 12,
-    lat: 48.9008163,
-    lng: 2.2993072,
-    label: 'B',
-    draggable: false
-  }, {
-    id: 13,
-    lat: 48.903045,
-    lng: 2.303786,
-    label: 'E',
-    draggable: false
-  }, {
-    id: 14,
-    lat: 48.903393,
-    lng: 2.305892,
-    label: 'C',
-    draggable: false
-  }, {
-    id: 15,
-    lat: 48.904900,
-    lng: 2.308576,
-    label: 'D',
-    draggable: false
-  }
-]
-
-let markersPromise = Promise.resolve(MARKERS);
-let fullMarkersPromise = Promise.resolve(FULL_MARKERS);
 
 @Injectable()
 export class MarkerService {
   markerRequested: EventEmitter<any> = new EventEmitter();
 
+  constructor (
+    private http: Http) { }
+
   getMarkers(): Promise<any[]> {
-    return markersPromise.then(marker => {
-       return this.toGoogleMarkers(marker);
-     });
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.get("/markers", { headers })
+                    .map(res => res.json())
+                    .map(markers => this.toGoogleMarkers(markers))
+                    .toPromise();
   }
   getMarker(id: number | string): Promise<any> {
-    return fullMarkersPromise
+    return this.getMarkers()
       .then(markers => this.toGoogleMarker(markers.find(marker => marker.id === +id)));
   }
 
