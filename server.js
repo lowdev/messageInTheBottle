@@ -7,6 +7,7 @@ const express = require('express'),
 const bodyParser = require('body-parser');
 const request = require('request');
 const config = require('./config');
+const mockedData = require("./mocked-data");
 
 app.use(express.static(__dirname));
 app.use(morgan('dev'));
@@ -58,6 +59,12 @@ app.get('/user/facebook', function(req, res) {
   });
   // End request
 });
+
+app.get('/bottles', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  return res.status(200).json(mockedData.BOTTLES);
+});
+
 
 app.all('*', function (req, res) {
 	res.status(200).sendFile(path.join(__dirname, '/index.html'));
