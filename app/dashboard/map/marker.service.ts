@@ -36,6 +36,7 @@ export class MarkerService {
 
   private toGoogleMarker(marker: Marker): any {
     let googleMarker = new google.maps.Marker({
+      id: marker.id,
       title: marker.label,
       position: { lat: marker.lat, lng: marker.lng }
     });

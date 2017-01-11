@@ -48,13 +48,20 @@ export class MapComponent {
 
   private addMarker(marker:any) {
     marker.addListener('click', event => {
-      console.log("event: " + event.latLng);
       this.center(event.latLng);
+      let marker = this.findMarkerByLatLng(event.latLng);
+      this.displayDetail(marker.id);
     });
 
     this.markerClusterer.addMarker(marker, true);
     this.markerClusterer.setIgnoreHidden(true);
     this.markerClusterer.repaint();
+  }
+
+  private findMarkerByLatLng(latLng:any) {
+    return this.markerClusterer.getMarkers().find(marker =>
+      marker.getPosition().lat() == latLng.lat()
+      && marker.getPosition().lng() == latLng.lng());
   }
 
   private displayDetail(id: string) {
