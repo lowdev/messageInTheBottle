@@ -39,21 +39,22 @@ export class MapComponent {
             return;
           }
 
-          marker.addListener('click', event => this.center(event.latLng));
-
-          this.markerClusterer.addMarker(marker, true);
-          this.markerClusterer.setIgnoreHidden(true);
-          this.markerClusterer.repaint();
+          this.addMarker(marker);
           this.centerFromMarker(marker);
         });
       }
     );
   }
 
-  clickedMarker(id: string, index: number) {
-    console.log(`clicked the marker: ${id || index}`);
-    //this.map.setCenter(marker.getPosition());
-    this.displayDetail(id);
+  private addMarker(marker:any) {
+    marker.addListener('click', event => {
+      console.log("event: " + event.latLng);
+      this.center(event.latLng);
+    });
+
+    this.markerClusterer.addMarker(marker, true);
+    this.markerClusterer.setIgnoreHidden(true);
+    this.markerClusterer.repaint();
   }
 
   private displayDetail(id: string) {
@@ -78,8 +79,7 @@ export class MapComponent {
 
     this.service.getMarkers().then(markers => {
       markers.forEach(marker => {
-        marker.addListener('click', event => this.center(event.latLng));
-        this.markerClusterer.addMarker(marker, true);
+        this.addMarker(marker);
       });
     });
   }
