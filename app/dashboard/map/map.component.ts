@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
-import { MarkerService } from './marker.service';
-import { MapService }    from './map.service';
+import { MarkerService }      from './marker.service';
+import { BottleEventService } from '../service/bottle-event.service';
 import { Marker }               from './marker.model';
 import { MarkerClusterOptions } from './markerClusterOptions';
 
@@ -28,10 +28,10 @@ export class MapComponent {
 
   constructor(
     private service: MarkerService,
-    private mapService: MapService,
+    private bottleEventService: BottleEventService,
     private router: Router
   ) {
-    mapService.markerRequested.subscribe(
+    bottleEventService.loadedBottle.subscribe(
       item => {
         this.service.getMarker(item['id']).then(marker => {
           if (this.isExist(marker)) {
