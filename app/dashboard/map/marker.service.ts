@@ -9,8 +9,6 @@ declare var google: any;
 
 @Injectable()
 export class MarkerService {
-  markerRequested: EventEmitter<any> = new EventEmitter();
-
   constructor (
     private http: Http) { }
 
