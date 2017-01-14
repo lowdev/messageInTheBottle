@@ -1,9 +1,9 @@
 import { Component, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute}   from '@angular/router';
 
-import { AuthService }      from 'ng2-ui-auth';
-import { FabActionService } from './fabAction.service';
-import { ViewService }      from './view.service';
+import { AuthService }           from 'ng2-ui-auth';
+import { FabActionEventService } from './service/fabAction-event.service';
+import { ViewService }           from './view.service';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -24,7 +24,7 @@ export class DashboardComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private fabActionService: FabActionService,
+    private fabActionService: FabActionEventService,
     private viewService:ViewService,
     private authService:AuthService
   ) {

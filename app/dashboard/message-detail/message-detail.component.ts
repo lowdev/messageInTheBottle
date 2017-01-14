@@ -5,9 +5,9 @@ import { Animations }               from '../../animations';
 import { Bottle }                   from '../bottle.model';
 
 import { BottleService }    from '../bottle.service';
-import { FabActionService } from '../fabAction.service';
 import { MarkerService }    from '../map/marker.service';
-import { BottleEventService } from '../service/bottle-event.service';
+import { BottleEventService }    from '../service/bottle-event.service';
+import { FabActionEventService } from './../service/fabAction-event.service';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
@@ -27,7 +27,7 @@ export class MessageDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private bottleService: BottleService,
-    private fabActionService: FabActionService,
+    private fabActionService: FabActionEventService,
     private markerService: MarkerService,
     private bottleEventService: BottleEventService
   ) {}

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Animations }               from '../../animations';
 import { Bottle }                   from './../bottle.model';
 import { BottleService }            from './../bottle.service';
-import { FabActionService }         from '../fabAction.service';
+import { FabActionEventService }    from './../service/fabAction-event.service';
 import { BottlesEventService }      from '../service/bottles-event.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class ListBottlesComponent implements OnInit {
 
   constructor(
     private service: BottleService,
-    private fabActionService: FabActionService,
+    private fabActionService: FabActionEventService,
     private bottlesEventService: BottlesEventService
   ) {}
 
