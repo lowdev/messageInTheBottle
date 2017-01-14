@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
 import { MarkerService }      from './marker.service';
 import { BottleEventService } from '../service/bottle-event.service';
+import { BottlesEventService } from '../service/bottles-event.service';
 import { Marker }               from './marker.model';
 import { MarkerClusterOptions } from './markerClusterOptions';
 
@@ -29,6 +30,7 @@ export class MapComponent {
   constructor(
     private service: MarkerService,
     private bottleEventService: BottleEventService,
+    private bottlesEventService: BottlesEventService,
     private router: Router
   ) {
     bottleEventService.loadedBottle.subscribe(
@@ -44,11 +46,15 @@ export class MapComponent {
         });
       }
     );
+
+    bottlesEventService.bottlesLoaded.subscribe(
+      item => this.resetMapPosition()
+    );
   }
 
   private addMarker(marker:any) {
     marker.addListener('click', event => {
-      this.center(event.latLng);
+      this.center(event.latLng, 18);
       let marker = this.findMarkerByLatLng(event.latLng);
       this.displayDetail(marker.id);
     });
@@ -97,14 +103,19 @@ export class MapComponent {
       && markerFromCluster.getPosition().lng() == marker.getPosition().lng());
   }
 
-  private center(latLng: any) {
+  private center(latLng: any, zoom: Number) {
     this.map.panTo(latLng);
-    this.map.setZoom(18);
+    this.map.setZoom(zoom);
   }
 
   private centerFromMarker(marker: any) {
     let position = marker.getPosition();
     let latlng = new google.maps.LatLng(position.lat(), position.lng());
-    this.center(latlng);
+    this.center(latlng, 18);
+  }
+
+  private resetMapPosition() {
+    let latlng = new google.maps.LatLng(this.lat, this.lng);
+    this.center(latlng, this.zoom);
   }
 }

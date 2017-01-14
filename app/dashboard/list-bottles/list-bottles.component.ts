@@ -3,6 +3,7 @@ import { Animations }               from '../../animations';
 import { Bottle }                   from './../bottle.model';
 import { BottleService }            from './../bottle.service';
 import { FabActionService }         from '../fabAction.service';
+import { BottlesEventService }      from '../service/bottles-event.service';
 
 @Component({
   moduleId: module.id,
@@ -19,7 +20,8 @@ export class ListBottlesComponent implements OnInit {
 
   constructor(
     private service: BottleService,
-    private fabActionService: FabActionService
+    private fabActionService: FabActionService,
+    private bottlesEventService: BottlesEventService
   ) {}
 
   ngOnInit() {

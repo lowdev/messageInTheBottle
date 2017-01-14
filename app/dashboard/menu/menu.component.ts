@@ -6,6 +6,7 @@ import { AuthService } from 'ng2-ui-auth';
 
 import { FabActionService }         from '../fabAction.service';
 import { ViewService }              from '../view.service';
+import { BottlesEventService }      from '../service/bottles-event.service';
 import { FacebookMe, FacebookUser } from '../../service/facebook-me.service';
 
 @Component({
@@ -30,7 +31,8 @@ export class MenuComponent implements OnInit {
     private fabActionService: FabActionService,
     private viewService: ViewService,
     private auth: AuthService,
-    private facebookMe: FacebookMe
+    private facebookMe: FacebookMe,
+    private bottlesEventService: BottlesEventService
   ) {
     fabActionService.actionChanged.subscribe(
       item => {
@@ -82,6 +84,7 @@ export class MenuComponent implements OnInit {
   }
 
   gotoHome() {
+    this.bottlesEventService.notifyBottlesLoaded();
     this.router.navigate(['/dashboard']);
   }
 
