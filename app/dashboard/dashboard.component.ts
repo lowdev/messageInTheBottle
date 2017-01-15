@@ -46,7 +46,7 @@ export class DashboardComponent {
 
   doAction(): void {
     if (!this.authService.isAuthenticated()) {
-      Materialize.toast("Vous n'êtes pas connecté", 4000);
+      Materialize.toast("Vous n'êtes pas connecté &nbsp; <a href='/introduction'>Connexion</a>", 4000);
       return;
     }
 
