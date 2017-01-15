@@ -42,6 +42,12 @@ export class MenuComponent implements OnInit {
         this.isBackButtonDisplayed = true;
       }
     );
+    bottlesEventService.bottlesLoaded.subscribe(
+      item => {
+        this.isMenuButtonDisplayed = true;
+        this.isBackButtonDisplayed = false;
+      }
+    );
     fabActionService.actionChanged.subscribe(
       item => {
         let action = item['action'];

@@ -74,7 +74,10 @@ export class MapComponent {
     );
 
     this.bottlesEventService.bottlesLoaded.subscribe(
-      item => this.resetMapPosition()
+      item => {
+        this.resetMapPosition();
+        this.byebyeEditMode();
+      }
     );
   }
 
