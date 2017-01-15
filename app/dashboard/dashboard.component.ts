@@ -3,6 +3,7 @@ import { Router, ActivatedRoute}   from '@angular/router';
 
 import { AuthService }           from 'ng2-ui-auth';
 import { FabActionEventService } from './service/fabAction-event.service';
+import { BottleEventService }    from './service/bottle-event.service';
 import { ViewService }           from './view.service';
 
 import { Observable } from 'rxjs/Observable';
@@ -25,9 +26,11 @@ export class DashboardComponent {
     private router: Router,
     private route: ActivatedRoute,
     private fabActionService: FabActionEventService,
+    private bottleEventService: BottleEventService,
     private viewService:ViewService,
     private authService:AuthService
   ) {
+    bottleEventService.loadedBottle.subscribe(item => this.actionButton = 'edit');
     fabActionService.actionChanged.subscribe(
       item => { this.actionButton = item['action']; }
     );

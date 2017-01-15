@@ -6,6 +6,7 @@ import { AuthService } from 'ng2-ui-auth';
 
 import { FabActionEventService }    from './../service/fabAction-event.service';
 import { ViewService }              from '../view.service';
+import { BottleEventService }       from '../service/bottle-event.service';
 import { BottlesEventService }      from '../service/bottles-event.service';
 import { FacebookMe, FacebookUser } from '../../service/facebook-me.service';
 
@@ -32,8 +33,15 @@ export class MenuComponent implements OnInit {
     private viewService: ViewService,
     private auth: AuthService,
     private facebookMe: FacebookMe,
-    private bottlesEventService: BottlesEventService
+    private bottlesEventService: BottlesEventService,
+    private bottleEventService: BottleEventService
   ) {
+    bottleEventService.loadedBottle.subscribe(
+      item => {
+        this.isMenuButtonDisplayed = false;
+        this.isBackButtonDisplayed = true;
+      }
+    );
     fabActionService.actionChanged.subscribe(
       item => {
         let action = item['action'];

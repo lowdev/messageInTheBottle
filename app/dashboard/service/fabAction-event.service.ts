@@ -8,10 +8,6 @@ export class FabActionEventService {
     this.actionChanged.emit({ "action": "add" });
   }
 
-  notifyEdit(): void {
-    this.actionChanged.emit({ "action": "edit" });
-  }
-
   notifyValidate(): void {
     this.actionChanged.emit({ "action": "done" });
   }

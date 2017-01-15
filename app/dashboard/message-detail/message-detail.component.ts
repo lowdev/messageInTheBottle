@@ -39,6 +39,5 @@ export class MessageDetailComponent implements OnInit {
         this.bottle = bottle;
         this.bottleEventService.bottleIsLoaded(bottle.id);
       });
-    this.fabActionService.notifyEdit();
   }
 }
