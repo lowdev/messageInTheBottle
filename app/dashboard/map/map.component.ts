@@ -49,10 +49,6 @@ export class MapComponent {
         });
       }
     );
-
-    bottlesEventService.bottlesLoaded.subscribe(
-      item => this.resetMapPosition()
-    );
   }
 
   mapLoaded(m) {
@@ -75,6 +71,10 @@ export class MapComponent {
           this.byebyeEditMode();
         }
       }
+    );
+
+    this.bottlesEventService.bottlesLoaded.subscribe(
+      item => this.resetMapPosition()
     );
   }
 

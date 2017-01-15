@@ -92,7 +92,6 @@ export class MenuComponent implements OnInit {
   }
 
   gotoHome() {
-    this.bottlesEventService.notifyBottlesLoaded();
     this.router.navigate(['/dashboard']);
   }
 

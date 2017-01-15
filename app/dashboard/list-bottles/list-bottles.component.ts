@@ -29,6 +29,7 @@ export class ListBottlesComponent implements OnInit {
       .then(bottles => {
         this.bottles = bottles;
     });
+    this.bottlesEventService.notifyBottlesLoaded();
     this.fabActionService.notifyAdd();
   }
 }
