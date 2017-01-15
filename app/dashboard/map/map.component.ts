@@ -20,6 +20,7 @@ declare var MarkerClusterer: any;
 export class MapComponent {
   map: any;
   markerClusterer: any;
+  witnessMarker: any;
 
   // google maps zoom level
   zoom: number = 15;
@@ -52,12 +53,22 @@ export class MapComponent {
     bottlesEventService.bottlesLoaded.subscribe(
       item => this.resetMapPosition()
     );
+  }
 
-    fabActionEventService.actionChanged.subscribe(
+  mapLoaded(m) {
+    console.log('map loaded!', m);
+    this.map = m;
+    this.markerClusterer =  new MarkerClusterer(m, [], MarkerClusterOptions.get());
+    this.witnessMarker = this.service.createWitnessMarker(this.map.getCenter());
+
+    this.service.getMarkers().then(markers => {
+      markers.forEach(marker => {
+        this.addMarker(marker);
+      });
+    });
+
+    this.fabActionEventService.actionChanged.subscribe(
       item => {
-        if (this.markerClusterer == null) {
-          return;
-        }
         if ("done" == item['action']) {
           this.activateEditMode();
         } else {
@@ -69,10 +80,20 @@ export class MapComponent {
 
   private byebyeEditMode() {
     this.enableAllMarker();
+    this.disableWitnessMarker();
   }
 
   private activateEditMode() {
     this.disableAllMarker();
+    this.enableWitnessMarker();
+  }
+
+  private enableWitnessMarker() {
+    this.witnessMarker.setMap(this.map);
+  }
+
+  private disableWitnessMarker() {
+    this.witnessMarker.setMap(null);
   }
 
   private enableAllMarker() {
@@ -118,18 +139,6 @@ export class MapComponent {
 
   markerDragEnd(m: Marker, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
-  }
-
-  mapLoaded(m) {
-    console.log('map loaded!', m);
-    this.map = m;
-    this.markerClusterer =  new MarkerClusterer(m, [], MarkerClusterOptions.get());
-
-    this.service.getMarkers().then(markers => {
-      markers.forEach(marker => {
-        this.addMarker(marker);
-      });
-    });
   }
 
   isExist(marker:any): boolean {

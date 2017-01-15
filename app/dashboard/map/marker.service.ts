@@ -28,6 +28,17 @@ export class MarkerService {
                     .toPromise();
   }
 
+  createWitnessMarker(latLng: any): any {
+    let marker:Marker = {
+      id: 0,
+    	lat: latLng.lat(),
+    	lng: latLng.lng(),
+    	label: "witness",
+    	draggable: true
+    };
+    return this.toGoogleMarker(marker);
+  }
+
   private toGoogleMarkers(markers: Marker[]): any[] {
     return markers.map(marker => this.toGoogleMarker(marker));
   }
@@ -36,7 +47,8 @@ export class MarkerService {
     let googleMarker = new google.maps.Marker({
       id: marker.id,
       title: marker.label,
-      position: { lat: marker.lat, lng: marker.lng }
+      position: { lat: marker.lat, lng: marker.lng },
+      draggable: marker.draggable
     });
     googleMarker.setIcon('./asset/default-marker-icon.png');
 
