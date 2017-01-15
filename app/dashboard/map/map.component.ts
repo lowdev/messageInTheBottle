@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
-import { MarkerService }      from './marker.service';
-import { BottleEventService } from '../service/bottle-event.service';
-import { BottlesEventService } from '../service/bottles-event.service';
+import { MarkerService }     from './marker.service';
+import { BottleEventService }    from '../service/bottle-event.service';
+import { BottlesEventService }   from '../service/bottles-event.service';
+import { FabActionEventService } from './../service/fabAction-event.service';
 import { Marker }               from './marker.model';
 import { MarkerClusterOptions } from './markerClusterOptions';
 
@@ -31,6 +32,7 @@ export class MapComponent {
     private service: MarkerService,
     private bottleEventService: BottleEventService,
     private bottlesEventService: BottlesEventService,
+    private fabActionEventService: FabActionEventService,
     private router: Router
   ) {
     bottleEventService.loadedBottle.subscribe(
@@ -50,6 +52,39 @@ export class MapComponent {
     bottlesEventService.bottlesLoaded.subscribe(
       item => this.resetMapPosition()
     );
+
+    fabActionEventService.actionChanged.subscribe(
+      item => {
+        if (this.markerClusterer == null) {
+          return;
+        }
+        if ("done" == item['action']) {
+          this.activateEditMode();
+        } else {
+          this.byebyeEditMode();
+        }
+      }
+    );
+  }
+
+  private byebyeEditMode() {
+    this.enableAllMarker();
+  }
+
+  private activateEditMode() {
+    this.disableAllMarker();
+  }
+
+  private enableAllMarker() {
+    this.markerClusterer.getMarkers().forEach(marker => {
+      marker.setIcon('./asset/default-marker-icon.png');
+    });
+  }
+
+  private disableAllMarker() {
+    this.markerClusterer.getMarkers().forEach(marker => {
+      marker.setIcon('./asset/disabled-marker-icon.png');
+    });
   }
 
   private addMarker(marker:any) {

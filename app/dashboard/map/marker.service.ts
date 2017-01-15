@@ -38,6 +38,7 @@ export class MarkerService {
       title: marker.label,
       position: { lat: marker.lat, lng: marker.lng }
     });
+    googleMarker.setIcon('./asset/default-marker-icon.png');
 
      /*var infowindow = new google.maps.InfoWindow({
        content: '<h4>' +  table.name + '</h4><p>' + table.address + '</p>'
