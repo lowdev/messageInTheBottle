@@ -42,22 +42,16 @@ export class MenuComponent implements OnInit {
         this.isBackButtonDisplayed = true;
       }
     );
+    bottleEventService.bottleInEditMode.subscribe(
+      item => {
+        this.isMenuButtonDisplayed = false;
+        this.isBackButtonDisplayed = true;
+      }
+    );
     bottlesEventService.bottlesLoaded.subscribe(
       item => {
         this.isMenuButtonDisplayed = true;
         this.isBackButtonDisplayed = false;
-      }
-    );
-    fabActionService.actionChanged.subscribe(
-      item => {
-        let action = item['action'];
-        if ("add" == action) {
-          this.isMenuButtonDisplayed = true;
-          this.isBackButtonDisplayed = false;
-        } else {
-          this.isMenuButtonDisplayed = false;
-          this.isBackButtonDisplayed = true;
-        }
       }
     );
 

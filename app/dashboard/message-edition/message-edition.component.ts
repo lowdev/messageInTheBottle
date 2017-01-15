@@ -4,8 +4,8 @@ import { ActivatedRoute, Params }   from '@angular/router';
 import { Animations }               from '../../animations';
 import { Bottle }                   from '../bottle.model';
 
-import { BottleService }         from '../bottle.service';
-import { FabActionEventService } from './../service/fabAction-event.service';
+import { BottleService }      from '../bottle.service';
+import { BottleEventService } from '../service/bottle-event.service';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
@@ -24,7 +24,7 @@ export class MessageEditionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private bottleService: BottleService,
-    private fabActionService: FabActionEventService
+    private bottleEventService: BottleEventService
   ) { }
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class MessageEditionComponent implements OnInit {
         if (!bottle) {
           this.bottle = new Bottle();
         }
-        this.fabActionService.notifyValidate();
+        this.bottleEventService.bottleIsInEditMode();
       });
   }
 }

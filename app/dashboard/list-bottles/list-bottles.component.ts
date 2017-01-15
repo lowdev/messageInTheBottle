@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Animations }               from '../../animations';
 import { Bottle }                   from './../bottle.model';
-import { BottleService }            from './../bottle.service';
-import { BottlesEventService }      from '../service/bottles-event.service';
+import { BottleService }       from './../bottle.service';
+import { BottlesEventService } from '../service/bottles-event.service';
 
 @Component({
   moduleId: module.id,

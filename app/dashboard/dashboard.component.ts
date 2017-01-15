@@ -2,7 +2,6 @@ import { Component, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute}   from '@angular/router';
 
 import { AuthService }           from 'ng2-ui-auth';
-import { FabActionEventService } from './service/fabAction-event.service';
 import { BottleEventService }    from './service/bottle-event.service';
 import { BottlesEventService }   from './service/bottles-event.service';
 import { ViewService }           from './view.service';
@@ -26,17 +25,15 @@ export class DashboardComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private fabActionService: FabActionEventService,
     private bottleEventService: BottleEventService,
     private bottlesEventService: BottlesEventService,
     private viewService:ViewService,
     private authService:AuthService
   ) {
     bottleEventService.loadedBottle.subscribe(item => this.actionButton = 'edit');
+    bottleEventService.bottleInEditMode.subscribe(item => this.actionButton = 'done');
     bottlesEventService.bottlesLoaded.subscribe(item => this.actionButton = 'add');
-    fabActionService.actionChanged.subscribe(
-      item => { this.actionButton = item['action']; }
-    );
+
     viewService.viewChanged.subscribe(
       item => {
         if (item['view'] == 'map') {

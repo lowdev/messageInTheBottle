@@ -3,7 +3,6 @@ import { Router }            from '@angular/router';
 import { MarkerService }     from './marker.service';
 import { BottleEventService }    from '../service/bottle-event.service';
 import { BottlesEventService }   from '../service/bottles-event.service';
-import { FabActionEventService } from './../service/fabAction-event.service';
 import { Marker }               from './marker.model';
 import { MarkerClusterOptions } from './markerClusterOptions';
 
@@ -33,7 +32,6 @@ export class MapComponent {
     private service: MarkerService,
     private bottleEventService: BottleEventService,
     private bottlesEventService: BottlesEventService,
-    private fabActionEventService: FabActionEventService,
     private router: Router
   ) {
     bottleEventService.loadedBottle.subscribe(
@@ -63,13 +61,9 @@ export class MapComponent {
       });
     });
 
-    this.fabActionEventService.actionChanged.subscribe(
+    this.bottleEventService.bottleInEditMode.subscribe(
       item => {
-        if ("done" == item['action']) {
-          this.activateEditMode();
-        } else {
-          this.byebyeEditMode();
-        }
+        this.activateEditMode();
       }
     );
 
