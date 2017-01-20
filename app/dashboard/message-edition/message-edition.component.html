@@ -3,19 +3,17 @@
   <div class="col s12 m12 l12">
     <div class="card">
       <div class="card-content black-text" *ngIf="bottle">
-        <form #form="ngForm" (ngSubmit)="submit()">
-          <div class="input-field">
-            <input type="text" [(ngModel)]="bottle.title" [ngModelOptions]="{standalone: true}"
-              class="validate" required="" aria-required="true">
-            <label class="active" for="title">Title</label>
-          </div>
-          <br />
-          <div class="input-field">
-            <textarea [(ngModel)]="bottle.description" [ngModelOptions]="{standalone: true}"
-               class="materialize-textarea" required="" aria-required="true"></textarea>
-            <label class="active" for="description">description</label>
-          </div>
-        </form>
+        <div class="input-field">
+          <input type="text" [(ngModel)]="bottle.title"
+            class="validate" required="" aria-required="true">
+          <label class="active" for="title">Title</label>
+        </div>
+        <br />
+        <div class="input-field">
+          <textarea [(ngModel)]="bottle.description"
+             class="materialize-textarea" required="" aria-required="true"></textarea>
+          <label class="active" for="description">description</label>
+        </div>
         <!-- <button #submitButton type="submit" (click)="form.ngSubmit.emit()"
         class="btn btn-default">Submit</button> -->
       </div>

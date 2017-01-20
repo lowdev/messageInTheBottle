@@ -6,6 +6,7 @@ import { Bottle }     from '../bottle.model';
 import { BottleService }      from '../bottle.service';
 import { BottleEventService } from '../service/bottle-event.service';
 
+import { Subscription } from "rxjs";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
@@ -19,7 +20,8 @@ import 'rxjs/add/operator/switchMap';
 })
 export class MessageEditionComponent implements OnInit {
   //@ViewChild('submitButton') submitButton:ElementRef;
-  bottle: Bottle;
+  private bottle: Bottle;
+  private subscription:Subscription;
 
   constructor(
     private router: Router,
@@ -47,19 +49,16 @@ export class MessageEditionComponent implements OnInit {
       }
     );
 
-    this.bottleEventService.bottleMarkerSaved.subscribe(
+    this.subscription = this.bottleEventService.bottleMarkerSaved.subscribe(
       event => {
+        this.subscription.unsubscribe();
         this.bottle.lat = event['lat'];
         this.bottle.lng = event['lng'];
-        this.bottleService.save(this.bottle)
-          .then(bottle => {
-            this.bottleEventService.bottleIsSaved(bottle);
+        this.bottleService.save(this.bottle).then(bottle => {
+            //this.bottleEventService.bottleIsSaved(bottle);
             this.router.navigate(['/dashboard/message/' + bottle.id]);
         });
       }
     );
-  }
-
-  submit(): void {
   }
 }
