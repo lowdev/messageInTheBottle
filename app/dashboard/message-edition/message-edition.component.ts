@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ActivatedRoute, Params }   from '@angular/router';
+import { ActivatedRoute, Params, Router }           from '@angular/router';
 import { Animations } from '../../animations';
 import { Bottle }     from '../bottle.model';
 
@@ -22,6 +22,7 @@ export class MessageEditionComponent implements OnInit {
   bottle: Bottle;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private bottleService: BottleService,
     private bottleEventService: BottleEventService
@@ -50,8 +51,11 @@ export class MessageEditionComponent implements OnInit {
       event => {
         this.bottle.lat = event['lat'];
         this.bottle.lng = event['lng'];
-        this.bottleService.save(this.bottle);
-        this.bottleEventService.bottleIsSaved(this.bottle);
+        this.bottleService.save(this.bottle)
+          .then(bottle => {
+            this.bottleEventService.bottleIsSaved(bottle);
+            this.router.navigate(['/dashboard/message/' + bottle.id]);
+        });
       }
     );
   }

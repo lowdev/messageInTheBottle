@@ -69,14 +69,15 @@ app.get('/bottles', (req, res) => {
 
 app.post('/bottle', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  mockedData.BOTTLES.push({
+  let bottle = {
     id: i++,
     title: req.body.title,
     description: req.body.description,
     lat: req.body.lat,
     lng: req.body.lng
-  })
-  return res.status(200).json( {"response" : "ok"} );
+  };
+  mockedData.BOTTLES.push(bottle)
+  return res.status(200).json(bottle);
 });
 
 app.get('/markers', (req, res) => {

@@ -25,12 +25,11 @@ export class BottleService {
       .then(bottles => bottles.find(bottle => bottle.id === +id));
   }
 
-  save(bottle: Bottle): void {
+  save(bottle: Bottle): Promise<Bottle> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    this.http.post("/bottle", JSON.stringify(bottle), { headers })
-             .map(this.extractData)
-             .catch(this.handleError)
+     return this.http.post("/bottle", JSON.stringify(bottle), { headers })
+             .map(res => res.json())
              .toPromise();
   }
 
