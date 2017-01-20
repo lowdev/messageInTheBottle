@@ -67,6 +67,12 @@ export class MapComponent {
       }
     );
 
+    this.bottleEventService.bottleChecked.subscribe(
+      item => {
+        this.bottleEventService.bottleMarkerIsSaved(this.witnessMarker);
+      }
+    );
+
     this.bottlesEventService.bottlesLoaded.subscribe(
       item => {
         this.resetMapPosition();

@@ -9,6 +9,8 @@ const request = require('request');
 const config = require('./config');
 const mockedData = require("./mocked-data");
 
+var i = 15;
+
 app.use(express.static(__dirname));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -63,6 +65,18 @@ app.get('/user/facebook', function(req, res) {
 app.get('/bottles', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   return res.status(200).json(mockedData.BOTTLES);
+});
+
+app.post('/bottle', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  mockedData.BOTTLES.push({
+    id: i++,
+    title: req.body.title,
+    description: req.body.description,
+    lat: req.body.lat,
+    lng: req.body.lng
+  })
+  return res.status(200).json( {"response" : "ok"} );
 });
 
 app.get('/markers', (req, res) => {

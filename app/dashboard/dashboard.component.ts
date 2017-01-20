@@ -1,5 +1,5 @@
-import { Component, EventEmitter } from '@angular/core';
-import { Router, ActivatedRoute}   from '@angular/router';
+import { Component }             from '@angular/core';
+import { Router, ActivatedRoute} from '@angular/router';
 
 import { AuthService }           from 'ng2-ui-auth';
 import { BottleEventService }    from './service/bottle-event.service';
@@ -60,8 +60,9 @@ export class DashboardComponent {
       this.router.navigate([this.router.url + '/edit']);
     }
     if (this.actionButton == "done") {
-      const url: string = this.router.url;
-      this.router.navigate([ url.substring(0, url.lastIndexOf('/'))]);
+      this.bottleEventService.bottleIsValidated();
+      //const url: string = this.router.url;
+      //this.router.navigate([ url.substring(0, url.lastIndexOf('/'))]);
     }
 
     this.viewService.changeToListView();

@@ -1,8 +1,7 @@
-import { Component, OnInit, Input,
-          EventEmitter, Output }    from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
-import { Animations }               from '../../animations';
-import { Bottle }                   from '../bottle.model';
+import { Animations } from '../../animations';
+import { Bottle }     from '../bottle.model';
 
 import { BottleService }      from '../bottle.service';
 import { BottleEventService } from '../service/bottle-event.service';
@@ -19,6 +18,7 @@ import 'rxjs/add/operator/switchMap';
   animations: Animations.page
 })
 export class MessageEditionComponent implements OnInit {
+  //@ViewChild('submitButton') submitButton:ElementRef;
   bottle: Bottle;
 
   constructor(
@@ -37,5 +37,25 @@ export class MessageEditionComponent implements OnInit {
         }
         this.bottleEventService.bottleIsInEditMode();
       });
+
+    this.bottleEventService.bottleValidated.subscribe(
+      event => {
+        // Check form
+        //this.submitButton.nativeElement.click();
+        this.bottleEventService.bottleIsChecked();
+      }
+    );
+
+    this.bottleEventService.bottleMarkerSaved.subscribe(
+      event => {
+        this.bottle.lat = event['lat'];
+        this.bottle.lng = event['lng'];
+        this.bottleService.save(this.bottle);
+        this.bottleEventService.bottleIsSaved(this.bottle);
+      }
+    );
+  }
+
+  submit(): void {
   }
 }
