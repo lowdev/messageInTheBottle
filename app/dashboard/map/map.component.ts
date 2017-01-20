@@ -37,6 +37,7 @@ export class MapComponent {
     bottleEventService.loadedBottle.subscribe(
       item => {
         this.service.getMarker(item['id']).then(marker => {
+          this.byebyeEditMode();
           if (this.isExist(marker)) {
             this.centerFromMarker(marker);
             return;
