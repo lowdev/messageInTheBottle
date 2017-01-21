@@ -14,8 +14,8 @@ export class BottleEventService {
     this.loadedBottle.emit({ "id": id });
   }
 
-  bottleIsInEditMode(): void {
-    this.bottleInEditMode.emit();
+  bottleIsInEditMode(id: number): void {
+    this.bottleInEditMode.emit({ "id": id });
   }
 
   bottleIsValidated(): void {

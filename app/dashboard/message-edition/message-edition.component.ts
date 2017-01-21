@@ -38,7 +38,8 @@ export class MessageEditionComponent implements OnInit {
         if (!bottle) {
           this.bottle = new Bottle();
         }
-        this.bottleEventService.bottleIsInEditMode();
+
+        this.bottleEventService.bottleIsInEditMode(this.bottle.id);
       });
 
     this.bottleEventService.bottleValidated.subscribe(
@@ -54,7 +55,8 @@ export class MessageEditionComponent implements OnInit {
         this.subscription.unsubscribe();
         this.bottle.lat = event['lat'];
         this.bottle.lng = event['lng'];
-        this.bottleService.save(this.bottle).then(bottle => {
+
+        this.bottleService.saveOrUpdate(this.bottle).then(bottle => {
             //this.bottleEventService.bottleIsSaved(bottle);
             this.router.navigate(['/dashboard/message/' + bottle.id]);
         });

@@ -9,7 +9,7 @@ const request = require('request');
 const config = require('./config');
 const mockedData = require("./mocked-data");
 
-var i = 15;
+var i = 16;
 
 app.use(express.static(__dirname));
 app.use(morgan('dev'));
@@ -68,17 +68,41 @@ app.get('/bottles', (req, res) => {
 });
 
 app.post('/bottle', (req, res) => {
+  var bottle = save(req.body);
+
   res.setHeader('Content-Type', 'application/json');
-  let bottle = {
-    id: i++,
-    title: req.body.title,
-    description: req.body.description,
-    lat: req.body.lat,
-    lng: req.body.lng
-  };
-  mockedData.BOTTLES.push(bottle)
   return res.status(200).json(bottle);
 });
+
+function save(bottle) {
+  let bottleToSave = {
+    id: i++,
+    title: bottle.title,
+    description: bottle.description,
+    lat: bottle.lat,
+    lng: bottle.lng
+  };
+  mockedData.BOTTLES.push(bottleToSave);
+
+  return bottleToSave;
+}
+
+app.put('/bottle', (req, res) => {
+  var bottle = update(req.body);
+
+  res.setHeader('Content-Type', 'application/json');
+  return res.status(200).json(bottle);
+});
+
+function update(bottle) {
+  let bottleToUpdate = findBottle(bottle.id);
+  bottleToUpdate.title = bottle.title;
+  bottleToUpdate.description = bottle.description;
+  bottleToUpdate.lat = bottle.lat;
+  bottleToUpdate.lng = bottle.lng;
+
+  return bottleToUpdate;
+}
 
 app.get('/markers', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
@@ -87,7 +111,7 @@ app.get('/markers', (req, res) => {
 
 app.get('/marker/:id', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  return res.status(200).json(toMarker(findMarker(req.params.id)));
+  return res.status(200).json(toMarker(findBottle(req.params.id)));
 });
 
 function toMarker(bottle) {
@@ -113,7 +137,7 @@ function toMarkers(bottles) {
   return markers;
 }
 
-function findMarker(id) {
+function findBottle(id) {
   var bottles = mockedData.BOTTLES;
   for (var i = 0; i < bottles.length; i++) {
     if (bottles[i].id == id) {

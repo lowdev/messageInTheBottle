@@ -4,6 +4,7 @@ import { MarkerService }     from './marker.service';
 import { BottleEventService }    from '../service/bottle-event.service';
 import { BottlesEventService }   from '../service/bottles-event.service';
 import { Marker }               from './marker.model';
+import { Bottle }               from '../bottle.model';
 import { MarkerClusterOptions } from './markerClusterOptions';
 
 declare var google: any;
@@ -64,7 +65,15 @@ export class MapComponent {
 
     this.bottleEventService.bottleInEditMode.subscribe(
       item => {
-        this.activateEditMode();
+        let id = item['id'];
+        if (Bottle.NEW_ID == id) {
+          this.activateSaveMode();
+        } else {
+          this.disableAllMarker();
+          let marker = this.removeMarker(id);
+          this.witnessMarker.setPosition(marker.getPosition());
+          this.enableWitnessMarker();
+        }
       }
     );
 
@@ -87,7 +96,7 @@ export class MapComponent {
     this.disableWitnessMarker();
   }
 
-  private activateEditMode() {
+  private activateSaveMode() {
     this.disableAllMarker();
     this.enableWitnessMarker();
   }
@@ -112,6 +121,20 @@ export class MapComponent {
     });
   }
 
+  private disableAllMarkerExclude(id: number) {
+    this.markerClusterer.getMarkers().forEach(marker => {
+      if (marker.id != id) {
+        marker.setIcon('./asset/disabled-marker-icon.png');
+      }
+    });
+  }
+
+  private removeMarker(id: number) {
+    let marker = this.findMarkerById(id);
+    this.markerClusterer.removeMarker(marker);
+    return marker;
+  }
+
   private addMarker(marker:any) {
     marker.addListener('click', event => {
       this.center(event.latLng, 18);
@@ -128,6 +151,11 @@ export class MapComponent {
     return this.markerClusterer.getMarkers().find(marker =>
       marker.getPosition().lat() == latLng.lat()
       && marker.getPosition().lng() == latLng.lng());
+  }
+
+  private findMarkerById(id: number) {
+    return this.markerClusterer.getMarkers().find(marker =>
+      marker.id == id);
   }
 
   private displayDetail(id: string) {

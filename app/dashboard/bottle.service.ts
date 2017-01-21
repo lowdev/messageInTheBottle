@@ -25,12 +25,28 @@ export class BottleService {
       .then(bottles => bottles.find(bottle => bottle.id === +id));
   }
 
-  save(bottle: Bottle): Promise<Bottle> {
+  saveOrUpdate(bottle: Bottle): Promise<Bottle> {
+    if (Bottle.NEW_ID == bottle.id) {
+      return this.save(bottle);
+    }
+
+    return this.update(bottle);
+  }
+
+  private save(bottle: Bottle): Promise<Bottle> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-     return this.http.post("/bottle", JSON.stringify(bottle), { headers })
-             .map(res => res.json())
-             .toPromise();
+    return this.http.post("/bottle", JSON.stringify(bottle), { headers })
+           .map(res => res.json())
+           .toPromise();
+  }
+
+  private update(bottle: Bottle): Promise<Bottle> {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put("/bottle", JSON.stringify(bottle), { headers })
+           .map(res => res.json())
+           .toPromise();
   }
 
   private extractData(res: Response) {
