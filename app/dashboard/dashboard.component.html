@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<div class="fixed-action-btn">
+<div class="fixed-action-btn" *ngIf="isLogged()">
   <a (click)="doAction()" class="btn-floating btn-large waves-effect waves-light red">
     <i class="large material-icons">{{ actionButton }}</i>
   </a>

@@ -47,8 +47,12 @@ export class DashboardComponent {
     );
   }
 
+  isLogged() {
+    return this.authService.isAuthenticated();
+  }
+
   doAction(): void {
-    if (!this.authService.isAuthenticated()) {
+    if (!this.isLogged()) {
       Materialize.toast("Vous n'êtes pas connecté &nbsp; <a href='/introduction'>Connexion</a>", 4000);
       return;
     }
