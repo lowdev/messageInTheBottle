@@ -4,7 +4,6 @@ import { Router }                          from '@angular/router';
 
 import { AuthService } from 'ng2-ui-auth';
 
-import { FabActionEventService }    from './../service/fabAction-event.service';
 import { ViewService }              from '../view.service';
 import { BottleEventService }       from '../service/bottle-event.service';
 import { BottlesEventService }      from '../service/bottles-event.service';
@@ -29,7 +28,6 @@ export class MenuComponent implements OnInit {
   constructor(
     private router: Router,
     private location: Location,
-    private fabActionService: FabActionEventService,
     private viewService: ViewService,
     private auth: AuthService,
     private facebookMe: FacebookMe,

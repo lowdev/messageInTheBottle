@@ -6,7 +6,6 @@ import { StyledMap }    from './styled-map.component';
 import { MapComponent } from './map.component';
 
 import { MarkerService } from './marker.service';
-import { MapService }    from './map.service';
 
 @NgModule({
   imports: [
@@ -15,7 +14,7 @@ import { MapService }    from './map.service';
   ],
   declarations: [ MapComponent, StyledMap ],
   exports: [ MapComponent ],
-  providers: [ MarkerService, MapService ]
+  providers: [ MarkerService ]
 })
 export class MapModule {
 }
