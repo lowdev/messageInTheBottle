@@ -16,18 +16,23 @@ const dashboardRoutes: Routes = [
       {
         path: '',
         children: [
-          { path: '', redirectTo: 'bottles', pathMatch: 'full' },
-          { path: 'bottles', component: ListBottlesComponent },
           {
+            path: '', redirectTo: 'bottles', pathMatch: 'full' },
+          {
+            path: 'bottles',
+            component: ListBottlesComponent
+          },{
+            path: 'bottles/admin',
+            component: ListBottlesComponent,
+            data : { 'admin' : 'true'}
+          }, {
             path: 'message/:id',
             component: MessageDetailComponent
-          },
-          {
+          }, {
             path: 'message/:id/edit',
             component: MessageEditionComponent,
             canActivate: [ AuthGuard ]
-          },
-          {
+          }, {
             path: 'bottle/add',
             component: MessageEditionComponent,
             canActivate: [ AuthGuard ]

@@ -17,6 +17,7 @@ export class IntroductionComponent {
   ) {}
 
   log() {
+    this.auth.removeToken();
     this.router.navigate(['/dashboard/bottles']);
   }
 
@@ -26,5 +27,9 @@ export class IntroductionComponent {
           error: (err: any) => console.log(err),
           complete: () => this.router.navigateByUrl('/dashboard/bottles')
         });
-    }
+  }
+
+  logGodMode() {
+    this.router.navigate(['/dashboard/bottles/admin']);
+  }
 }

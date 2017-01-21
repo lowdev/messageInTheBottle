@@ -1,5 +1,5 @@
-import { Component }             from '@angular/core';
-import { Router, ActivatedRoute} from '@angular/router';
+import { Component }              from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthService }           from 'ng2-ui-auth';
 import { BottleEventService }    from './service/bottle-event.service';
