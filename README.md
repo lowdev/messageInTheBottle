@@ -1,5 +1,5 @@
 # [Message in the Bottle](https://github.com/lowdev/messageInTheBottle/)
-**Live Demo:** [https://article-annotater.herokuapp.com](https://messageinthebottle.herokuapp.com/)
+**Live Demo:** [https://messageinthebottle.herokuapp.com](https://messageinthebottle.herokuapp.com/)
 
 * [Angular 2] - HTML enhanced for web apps! ( https://angular.io/docs/ts/latest/quickstart.html )
 * [Node-js (Express)] - Server side
