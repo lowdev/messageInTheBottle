@@ -102,6 +102,7 @@ export class MapComponent {
   }
 
   private enableWitnessMarker() {
+    this.witnessMarker.setPosition(this.map.getCenter());
     this.witnessMarker.setMap(this.map);
   }
 
