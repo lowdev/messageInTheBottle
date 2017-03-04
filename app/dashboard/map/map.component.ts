@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
 import { MarkerService }     from './marker.service';
-import { BottleEventService }    from '../service/bottle-event.service';
-import { BottlesEventService }   from '../service/bottles-event.service';
+import { BottleEventService }  from '../service/bottle-event.service';
+import { BottlesEventService } from '../service/bottles-event.service';
 import { Marker }               from './marker.model';
 import { Bottle }               from '../bottle.model';
 import { MarkerClusterOptions } from './markerClusterOptions';
@@ -62,6 +62,10 @@ export class MapComponent {
         this.addMarker(marker);
       });
     });
+
+    if (this.router.url.endsWith("add")) {
+      this.activateSaveMode();
+    }
 
     this.bottleEventService.bottleInEditMode.subscribe(
       item => {

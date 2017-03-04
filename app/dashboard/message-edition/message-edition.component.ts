@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ActivatedRoute, Params, Router }           from '@angular/router';
+import { Component, OnInit, ElementRef }  from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Animations } from '../../animations';
 import { Bottle }     from '../bottle.model';
 
