@@ -1,21 +1,49 @@
-<div class="row">
-  <!-- Cards container -->
-  <div class="col s12 m12 l12">
-    <div class="card">
-      <div class="card-content black-text" *ngIf="bottle">
-        <div>
-          <span class="bottle-card-title card-title grey-text text-darken-4">
-            {{ bottle.title }}
-          </span>
-          <span class="right">
-            <i class="material-icons badge" data-badge="7">comment</i>
-          </span>
-        </div>
-        <br />
-        <p class="flow-text grey-text text-darken-2">
-          {{ bottle.description }}
-        </p>
+
+  <div class="card">
+    <div class="card-content black-text" *ngIf="bottle">
+      <div>
+        <span class="card-title activator grey-text text-darken-4">{{ bottle.title }}<i class="material-icons right badge" data-badge="7">comment</i></span>
       </div>
+      <br />
+      <p class="flow-text grey-text text-darken-2">
+        {{ bottle.description }}
+      </p>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">Comments<i class="material-icons right">close</i></span>
+      <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="images/yuna.jpg" alt="" class="circle">
+          <span class="title">Title</span>
+          <p>First Line <br>
+             Second Line
+          </p>
+          <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        </li>
+        <li class="collection-item avatar">
+          <i class="material-icons circle">folder</i>
+          <span class="title">Title</span>
+          <p>First Line <br>
+             Second Line
+          </p>
+          <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        </li>
+        <li class="collection-item avatar">
+          <i class="material-icons circle green">insert_chart</i>
+          <span class="title">Title</span>
+          <p>First Line <br>
+             Second Line
+          </p>
+          <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        </li>
+        <li class="collection-item avatar">
+          <i class="material-icons circle red">play_arrow</i>
+          <span class="title">Title</span>
+          <p>First Line <br>
+             Second Line
+          </p>
+          <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        </li>
+      </ul>
     </div>
   </div>
-</div>
