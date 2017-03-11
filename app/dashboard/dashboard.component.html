@@ -1,12 +1,11 @@
 <menu></menu>
 
 <div class="row main-row flex-s">
-  <div class="map-col col m0 s0 L5">
+  <div *ngIf="isFullMapView" [@enterAnimation]="isFullMapView" class="map-col col m0 s0 L5 test">
     <map></map>
   </div>
 
-  <div class="cards-col col s12 m12 L7"
-    [ngClass]="{ 'hide': isFullMapView }">
+  <div class="cards-col col s12 m12 L7">
     <router-outlet></router-outlet>
   </div>
 </div>

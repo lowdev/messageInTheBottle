@@ -1,4 +1,4 @@
-import { Component }              from '@angular/core';
+import { Component, trigger, transition, style, animate } from '@angular/core';   
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthService }           from 'ng2-ui-auth';
@@ -15,6 +15,20 @@ declare var Materialize:any;
 @Component({
   moduleId: module.id,
   selector: 'dashboard',
+  animations: [
+    trigger(
+      'enterAnimation', [
+        transition(':enter', [
+          style({transform: 'translateX(100%)', opacity: 0}),
+          animate('500ms', style({transform: 'translateX(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'translateX(0)', opacity: 1}),
+          animate('500ms', style({transform: 'translateX(100%)', opacity: 0}))
+        ])
+      ]
+    )
+  ],
   templateUrl: 'dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
