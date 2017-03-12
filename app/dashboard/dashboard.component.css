@@ -1,23 +1,13 @@
 .sebm-google-map-container {
   height: 100%;
 }
+/** FLEX part **/
+/* S and M size */
 @media (max-width: 992px) {
   .flexbox {
       display: flex;
       flex-direction: column;
       height: 100%;
-  }
-}
-@media all and (min-width: 0px) and (max-width: 600px) {
-  .main-row {
-    position: fixed;
-    width: 100%;
-/*
-    top: 55px;
-    */
-    bottom: 0;
-    right: 0;
-    margin-bottom: 0;
   }
 
   .flexed {
@@ -35,19 +25,33 @@
   .removed {
       /* Setting this to zero breaks the transition */
       flex-grow: 0.00001;
+      margin-bottom: 62px;
+  }
+}
+/* S size */
+@media all and (min-width: 0px) and (max-width: 600px) {
+  .removed {
       margin-bottom: 56px;
   }
 }
-@media all and (min-width: 600px) {
+/* END FLEX PART */
+
+/* MAIN ROW PART */
+.main-row {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 0;
+}
+/* L size */
+@media (min-width: 992px) {
   .main-row {
-    position: fixed;
-    width: 100%;
     top: 62px;
-    bottom: 0;
-    right: 0;
-    margin-bottom: 0;
   }
 }
+/* END MAIN ROW PART */
+
 .map-col {
   padding-left: 0;
   padding-right: 0;
