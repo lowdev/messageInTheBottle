@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit {
   isMenuButtonDisplayed = true;
   isBackButtonDisplayed = false;
 
-  isMapButtonDisplayed = true;
+  isMapButtonDisplayed = false;
 
   facebookUser: FacebookUser;
 

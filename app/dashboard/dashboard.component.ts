@@ -15,54 +15,12 @@ declare var Materialize:any;
 @Component({
   moduleId: module.id,
   selector: 'dashboard',
-  animations: [
-    trigger(
-      'enterAnimation', [
-        transition(':enter', [
-          style({transform: 'translateX(100%)', opacity: 0}),
-          animate('500ms', style({transform: 'translateX(0)', opacity: 1}))
-        ]),
-        transition(':leave', [
-          style({transform: 'translateX(0)', opacity: 1}),
-          animate('500ms', style({transform: 'translateX(100%)', opacity: 0}))
-        ])
-      ]
-    ),
-    trigger('signal', [
-      state('void', style({
-        'transform': 'translateY(-100%)'
-      })),
-      state('go', style({
-        'background-color':'green',
-        'height':'100px'
-      })),
-      state('stop', style({
-        'background-color':'red',
-        'height':'50px'
-      })),
-      transition('* => *', animate(500))
-    ])
-  ],
   templateUrl: 'dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  signal;
-  isHere = false;
   actionButton:string = "add";
-  isFullMapView:boolean = false;
-
-  onGoClick() {
-    this.signal = 'go';
-  }
-
-  onStopClick() {
-    this.signal = 'stop';
-  }
-
-  onToggleClick() {
-    this.isHere = !this.isHere;
-  }
+  islMapViewDisplayed:boolean = false;
 
   constructor(
     private router: Router,
@@ -78,12 +36,12 @@ export class DashboardComponent {
 
     viewService.viewChanged.subscribe(
       item => {
-        if (item['view'] == 'map') {
-          this.isFullMapView = true;
+        if (item['view'] == 'list') {
+          this.islMapViewDisplayed = true;
         }
 
-        if (item['view'] == 'list') {
-          this.isFullMapView = false;
+        if (item['view'] == 'map') {
+          this.islMapViewDisplayed = false;
         }
       }
     );
@@ -111,6 +69,6 @@ export class DashboardComponent {
       //this.router.navigate([ url.substring(0, url.lastIndexOf('/'))]);
     }
 
-    this.viewService.changeToListView();
+    this.viewService.changeToMapView();
   }
 }
