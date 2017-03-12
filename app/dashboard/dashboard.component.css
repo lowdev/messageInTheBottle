@@ -2,19 +2,40 @@
   height: 100%;
 }
 @media (max-width: 992px) {
-  .flex-s {
-    display: flex;
-    flex-direction: column; /* Stack on top */
+  .flexbox {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
   }
 }
 @media all and (min-width: 0px) and (max-width: 600px) {
   .main-row {
     position: fixed;
     width: 100%;
-    top: 58px;
+/*
+    top: 55px;
+    */
     bottom: 0;
     right: 0;
     margin-bottom: 0;
+  }
+
+  .flexed {
+      background: grey;
+      /* The border seems to cause drawing artifacts on transition. Probably a browser bug. */
+      /* border: 1px solid black; */
+      height:-moz-fit-content;
+      height:-webkit-fit-content;
+      height:fit-content;
+      flex-grow: 1;
+      flex: 1;
+      transition: flex-grow 200ms linear;
+  }
+
+  .removed {
+      /* Setting this to zero breaks the transition */
+      flex-grow: 0.00001;
+      margin-bottom: 56px;
   }
 }
 @media all and (min-width: 600px) {
@@ -55,8 +76,4 @@
 }
 menu {
   padding: 0px;
-}
-.traffic-light {
-  background-color: black;
-  height: 100%;
 }

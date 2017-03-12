@@ -1,13 +1,11 @@
 <menu></menu>
 
-<!--
-<div class="row main-row flex-s">
-  <div *ngIf="isFullMapView" [@enterAnimation]="isFullMapView" class="map-col col m0 s0 L5">
+<div class="row main-row flexbox">
+  <div class="map-col col m0 s0 L5 flexed" [ngClass]="{ 'removed': islMapViewDisplayed }">
     <map></map>
   </div>
-
-  <div class="cards-col col s12 m12 L7">
-    <router-outlet></router-outlet>
+  <div class="cards-col col s12 m12 L7 flexed">
+      <router-outlet></router-outlet>
   </div>
 </div>
 
@@ -16,11 +14,3 @@
     <i class="large material-icons">{{ actionButton }}</i>
   </a>
 </div>
--->
-<div [@signal]="signal" class="traffic-light"
-*ngIf="isFullMapView">
-</div>
-<button (click)="onGoClick()">Go</button>
-<button (click)="onStopClick()">Stop</button>
-<hr>
-<button (click)="onToggleClick()">Toggle</button>
