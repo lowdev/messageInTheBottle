@@ -56,9 +56,7 @@
 menu {
   padding: 0px;
 }
-.test {
-  -webkit-transition: height 2s;-moz-transition: height 2s ease-in-out;
-  -ms-transition: height 2s ease-in-out;
-  -o-transition: height 2s ease-in-out;
-  transition: height 2s;
+.traffic-light {
+  background-color: black;
+  height: 100%;
 }

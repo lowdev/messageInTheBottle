@@ -1,4 +1,4 @@
-import { Component, trigger, transition, style, animate } from '@angular/core';   
+import { Component, trigger, transition, style, animate, state } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthService }           from 'ng2-ui-auth';
@@ -27,14 +27,42 @@ declare var Materialize:any;
           animate('500ms', style({transform: 'translateX(100%)', opacity: 0}))
         ])
       ]
-    )
+    ),
+    trigger('signal', [
+      state('void', style({
+        'transform': 'translateY(-100%)'
+      })),
+      state('go', style({
+        'background-color':'green',
+        'height':'100px'
+      })),
+      state('stop', style({
+        'background-color':'red',
+        'height':'50px'
+      })),
+      transition('* => *', animate(500))
+    ])
   ],
   templateUrl: 'dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  signal;
+  isHere = false;
   actionButton:string = "add";
   isFullMapView:boolean = false;
+
+  onGoClick() {
+    this.signal = 'go';
+  }
+
+  onStopClick() {
+    this.signal = 'stop';
+  }
+
+  onToggleClick() {
+    this.isHere = !this.isHere;
+  }
 
   constructor(
     private router: Router,

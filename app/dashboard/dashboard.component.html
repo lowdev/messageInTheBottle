@@ -1,7 +1,8 @@
 <menu></menu>
 
+<!--
 <div class="row main-row flex-s">
-  <div *ngIf="isFullMapView" [@enterAnimation]="isFullMapView" class="map-col col m0 s0 L5 test">
+  <div *ngIf="isFullMapView" [@enterAnimation]="isFullMapView" class="map-col col m0 s0 L5">
     <map></map>
   </div>
 
@@ -15,3 +16,11 @@
     <i class="large material-icons">{{ actionButton }}</i>
   </a>
 </div>
+-->
+<div [@signal]="signal" class="traffic-light"
+*ngIf="isFullMapView">
+</div>
+<button (click)="onGoClick()">Go</button>
+<button (click)="onStopClick()">Stop</button>
+<hr>
+<button (click)="onToggleClick()">Toggle</button>
