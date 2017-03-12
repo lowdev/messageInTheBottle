@@ -40,3 +40,12 @@
 .card {
   height: 93%;
 }
+
+.card-reveal {
+  padding: 0;
+  color: black;
+}
+
+.card-title {
+  padding: 20px;
+}
