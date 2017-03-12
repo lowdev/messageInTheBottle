@@ -35,5 +35,12 @@ module.exports = {
       lat: 48.904900,
       lng: 2.308576
     }
+  ],
+  COMMENTS: [
+	  {
+      bottle_id: 11,
+      messsage: 'Cette personne m\'a beaucoup touché... Son histoire est édifiante je vous invite à en parler avec elle.',
+      image_url: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRzruC4-tsSNw-T6yYFctkrpNJjH9Ck4rpVGGpGJQ9gy7lOXdvVQg'
+	  }
   ]
 }
