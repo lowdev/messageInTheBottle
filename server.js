@@ -67,6 +67,14 @@ app.get('/bottles', (req, res) => {
   return res.status(200).json(mockedData.BOTTLES);
 });
 
+app.get('/bottle/:id', (req, res) => {
+  let id = req.params.id;
+  let bottle = findBottle(id);
+
+  res.setHeader('Content-Type', 'application/json');
+  return res.status(200).json(bottle);
+});
+
 app.post('/bottle', (req, res) => {
   var bottle = save(req.body);
 
