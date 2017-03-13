@@ -2,12 +2,16 @@ import { Component }  from '@angular/core';
 import { Router }     from '@angular/router';
 
 import { AuthService } from 'ng2-ui-auth';
+import { Animations }  from '../animations';
 
 @Component({
   moduleId: module.id,
   selector: 'introduction',
   templateUrl: 'introduction.component.html',
-  styleUrls: ['./introduction.component.css']
+  styleUrls: ['./introduction.component.css'],
+  styles: [':host { display: block; }'],
+  host: { '[@routeAnimation]': 'true' },
+  animations: Animations.fadeIn
 })
 export class IntroductionComponent {
 
