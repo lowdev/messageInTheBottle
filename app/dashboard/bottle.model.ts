@@ -1,3 +1,5 @@
+import { Comment } from './comment.model'
+
 export class Bottle {
   public static NEW_ID: number = -1;
 
@@ -6,7 +8,8 @@ export class Bottle {
     public title?: string,
     public description?: string,
     public lat?: number,
-    public lng?: number) { }
+    public lng?: number,
+    public comments?: Comment[]) { }
 
   public isNewBottle(): boolean {
     return this.id == Bottle.NEW_ID;

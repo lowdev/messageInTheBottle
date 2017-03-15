@@ -70,6 +70,7 @@ app.get('/bottles', (req, res) => {
 app.get('/bottle/:id', (req, res) => {
   let id = req.params.id;
   let bottle = findBottle(id);
+  bottle.comments = findComments(id);
 
   res.setHeader('Content-Type', 'application/json');
   return res.status(200).json(bottle);
@@ -153,6 +154,18 @@ function findBottle(id) {
     }
   }
   return null;
+}
+
+function findComments(id) {
+  var comments = [];
+  var allComments = mockedData.COMMENTS;
+  for (var i = 0; i < allComments.length; i++) {
+    if (allComments[i].bottle_id == id) {
+      comments.push(allComments[i]);
+    }
+  }
+
+  return comments;
 }
 
 app.all('*', function (req, res) {
