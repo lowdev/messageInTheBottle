@@ -39,8 +39,17 @@ module.exports = {
   COMMENTS: [
 	  {
       bottle_id: 11,
+      name: 'Sophie Koulé',
+      date: 'Il y a une heure',
       messsage: 'Cette personne m\'a beaucoup touché... Son histoire est édifiante je vous invite à en parler avec elle.',
       image_url: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRzruC4-tsSNw-T6yYFctkrpNJjH9Ck4rpVGGpGJQ9gy7lOXdvVQg'
+	  },
+    {
+      bottle_id: 11,
+      name: 'Magalie toupiquet',
+      date: 'Il y a quelques minutes',
+      messsage: 'Tout a fait d\'accord avec Sophie!',
+      image_url: 'http://68.media.tumblr.com/avatar_b8ddb86d751e_64.png'
 	  }
   ]
 }

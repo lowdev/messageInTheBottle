@@ -13,22 +13,10 @@
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Comments<i class="material-icons right">close</i></span>
-      <ul class="collection">
-        <li class="collection-item avatar">
-          <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRzruC4-tsSNw-T6yYFctkrpNJjH9Ck4rpVGGpGJQ9gy7lOXdvVQg" alt="" class="circle">
-          <span class="title">Sophie Koulé</span>
-          <p>Il y a une heure<br>
-            Cette personne m'a beaucoup touché... Son histoire est édifiante
-            je vous invite à en parler avec elle.
-          </p>
-        </li>
-        <li class="collection-item avatar">
-          <img src="http://68.media.tumblr.com/avatar_b8ddb86d751e_64.png" alt="" class="circle">
-          <span class="title">Magalie toupiquet</span>
-          <p>Il y a quelques minutes<br>
-             Tout a fait d'accord avec Sophie!
-          </p>
-        </li>
+      <ul class="collection" *ngIf="hasComment()">
+        <div *ngFor="let comment of comments">
+          <comment [comment]="comment"></comment>
+        </div>
       </ul>
     </div>
   </div>
