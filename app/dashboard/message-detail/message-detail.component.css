@@ -49,3 +49,37 @@
 .card-title {
   padding: 20px;
 }
+
+.collection {
+  border: 0px;
+}
+
+.collection .collection-item:last-child {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+input, textarea {
+  outline: none;
+  border: none;
+  display: block;
+	margin: 0;
+	padding: 0;
+	-webkit-font-smoothing: antialiased;
+	font-family: $ptsans;
+	font-size: rem(16);
+  color: $text-color;
+  @include placeholder {
+		color: $placeholder;
+	}
+}
+
+a {
+  display: inline-block;
+}
+
+.collection-comment {
+  transform: rotate(180deg);
+}
+.collection-comment > li {
+  transform: rotate(-180deg);
+}

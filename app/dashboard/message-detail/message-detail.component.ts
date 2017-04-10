@@ -45,4 +45,13 @@ export class MessageDetailComponent implements OnInit {
   hasComment():boolean {
     return this.comments.length > 0;
   }
+
+  addNewComment(newComment: string) {
+    let comment: Comment = new Comment();
+    comment.name = "me";
+    comment.date = "Maintenant";
+    comment.message = newComment;
+
+    this.comments.push(comment);
+  }
 }
