@@ -32,13 +32,15 @@ export class MessageEditionComponent implements OnInit {
 
   ngOnInit() {
     this.route.params
-      .switchMap((params: Params) => this.bottleService.getBottle(+params['id']))
-      .subscribe((bottle: Bottle) => {
-        this.bottle = bottle;
-        if (!bottle) {
-          this.bottle = new Bottle();
+      .switchMap((params: Params) => {
+        if (params['id']) {
+          return this.bottleService.getBottle(+params['id']);
         }
 
+        return Promise.resolve(new Bottle());
+      })
+      .subscribe((bottle: Bottle) => {
+        this.bottle = bottle;
         this.bottleEventService.bottleIsInEditMode(this.bottle.id);
       });
 
