@@ -37,6 +37,9 @@ export class MessageDetailComponent implements OnInit {
     private commentService: CommentService
   ) {
     this.user = cacheUser.getUser();
+    if (!this.user) {
+      this.user = new User();
+    }
   }
 
   ngOnInit() {

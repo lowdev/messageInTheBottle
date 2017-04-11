@@ -65,9 +65,7 @@ export class MenuComponent {
       }
     );
 
-    if (this.auth.isAuthenticated()) {
-      this.facebookUser = cacheUser.getUser();
-    }
+    this.facebookUser = cacheUser.getUser();
   }
 
   logOut() {

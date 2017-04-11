@@ -13,7 +13,6 @@
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Comments<i class="material-icons right">close</i></span>
-      <div *ngIf="hasComment()">
         <ul class="collection">
           <li class="collection-item avatar">
             <img src="{{ user.picture }}" alt="" class="circle">
@@ -22,11 +21,12 @@
               (keyup.enter)="addNewComment(newComment.value); newComment.value=''" />
           </li>
         </ul>
-        <ul class="collection collection-comment">
-          <li class="collection-item avatar" *ngFor="let comment of comments">
-            <comment [comment]="comment"></comment>
-          </li>
-        </ul>
-      </div>
+        <div *ngIf="hasComment()">
+          <ul class="collection collection-comment">
+            <li class="collection-item avatar" *ngFor="let comment of comments">
+              <comment [comment]="comment"></comment>
+            </li>
+          </ul>
+        </div>
     </div>
   </div>
