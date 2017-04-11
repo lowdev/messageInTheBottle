@@ -26,5 +26,6 @@ export class FacebookMe {
 }
 
 export interface FacebookUser {
-
+  displayName?: string;
+  picture?: string;
 }

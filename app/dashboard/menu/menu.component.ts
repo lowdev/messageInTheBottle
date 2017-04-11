@@ -1,13 +1,13 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
-import { Location }                        from '@angular/common';
-import { Router }                          from '@angular/router';
+import { Component, EventEmitter } from '@angular/core';
+import { Location }                from '@angular/common';
+import { Router }                  from '@angular/router';
 
 import { AuthService } from 'ng2-ui-auth';
 
-import { ViewService }              from '../view.service';
-import { BottleEventService }       from '../service/bottle-event.service';
-import { BottlesEventService }      from '../service/bottles-event.service';
-import { FacebookMe, FacebookUser } from '../../service/facebook-me.service';
+import { ViewService }         from '../view.service';
+import { BottleEventService }  from '../service/bottle-event.service';
+import { BottlesEventService } from '../service/bottles-event.service';
+import { CacheUser, User }     from '../../service/cache-user.service';
 
 @Component({
   moduleId: module.id,
@@ -15,7 +15,7 @@ import { FacebookMe, FacebookUser } from '../../service/facebook-me.service';
   templateUrl: 'menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
   sidenavActions = new EventEmitter<any>();
   sidenavParams = [];
   isMenuButtonDisplayed = true;
@@ -23,14 +23,14 @@ export class MenuComponent implements OnInit {
 
   isMapButtonDisplayed = false;
 
-  facebookUser: FacebookUser;
+  facebookUser: User;
 
   constructor(
     private router: Router,
     private location: Location,
     private viewService: ViewService,
     private auth: AuthService,
-    private facebookMe: FacebookMe,
+    private cacheUser: CacheUser,
     private bottlesEventService: BottlesEventService,
     private bottleEventService: BottleEventService
   ) {
@@ -66,13 +66,8 @@ export class MenuComponent implements OnInit {
     );
 
     if (this.auth.isAuthenticated()) {
-      this.facebookMe.getUser().subscribe(
-        facebookUser => this.facebookUser = facebookUser
-      );
+      this.facebookUser = cacheUser.getUser();
     }
-  }
-
-  ngOnInit() {
   }
 
   logOut() {

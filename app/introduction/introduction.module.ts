@@ -5,10 +5,12 @@ import { IntroductionRoutingModule } from './introduction-routing.module';
 
 import { AuthService } from 'ng2-ui-auth';
 
+import { CacheUser } from '../service/cache-user.service';
+
 @NgModule({
   imports: [ IntroductionRoutingModule ],
   declarations: [ IntroductionComponent ],
   exports: [ IntroductionComponent ],
-  providers: [ AuthService ]
+  providers: [ AuthService, CacheUser ]
 })
 export class IntroductionModule { }

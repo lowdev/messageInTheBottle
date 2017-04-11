@@ -4,6 +4,9 @@ import { Router }     from '@angular/router';
 import { AuthService } from 'ng2-ui-auth';
 import { Animations }  from '../animations';
 
+import { FacebookMe, FacebookUser } from '../service/facebook-me.service';
+import { CacheUser }                from '../service/cache-user.service';
+
 @Component({
   moduleId: module.id,
   selector: 'introduction',
@@ -17,7 +20,9 @@ export class IntroductionComponent {
 
   constructor(
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private facebookMe: FacebookMe,
+    private cacheUser: CacheUser
   ) {}
 
   log() {
@@ -29,7 +34,14 @@ export class IntroductionComponent {
     this.auth.authenticate('facebook')
         .subscribe({
           error: (err: any) => console.log(err),
-          complete: () => this.router.navigateByUrl('/dashboard/bottles')
+          complete: () => {
+            this.facebookMe.getUser().subscribe(
+              facebookUser => {
+                this.cacheUser.cacheFacebookUser(facebookUser);
+                this.router.navigateByUrl('/dashboard/bottles');
+              }
+            );
+          }
         });
   }
 
