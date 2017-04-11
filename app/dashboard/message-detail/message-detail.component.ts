@@ -9,6 +9,7 @@ import { BottleService }      from '../bottle.service';
 import { MarkerService }      from '../map/marker.service';
 import { BottleEventService } from '../service/bottle-event.service';
 import { CacheUser, User }    from '../../service/cache-user.service';
+import { CommentService }     from './comment.service';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
@@ -32,7 +33,8 @@ export class MessageDetailComponent implements OnInit {
     private bottleService: BottleService,
     private markerService: MarkerService,
     private bottleEventService: BottleEventService,
-    private cacheUser: CacheUser
+    private cacheUser: CacheUser,
+    private commentService: CommentService
   ) {
     this.user = cacheUser.getUser();
   }
@@ -53,11 +55,13 @@ export class MessageDetailComponent implements OnInit {
 
   addNewComment(newComment: string) {
     let comment: Comment = new Comment();
+    comment.bottle_id = this.bottle.id;
     comment.name = this.user.displayName;
     comment.image_url = this.user.picture;
     comment.date = "Maintenant";
     comment.message = newComment;
 
     this.comments.push(comment);
+    this.commentService.save(comment);
   }
 }

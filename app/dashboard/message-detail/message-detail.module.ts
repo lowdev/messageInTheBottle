@@ -5,10 +5,13 @@ import { CommentModule } from './comment/comment.module';
 
 import { MessageDetailComponent } from './message-detail.component';
 
+import { CommentService } from './comment.service';
+
 @NgModule({
   imports: [ CommonModule, FormsModule, CommentModule ],
   declarations: [ MessageDetailComponent ],
-  exports: [ MessageDetailComponent ]
+  exports: [ MessageDetailComponent ],
+  providers: [ CommentService ]
 })
 export class MessageDetailModule {
 }

@@ -96,6 +96,26 @@ function save(bottle) {
   return bottleToSave;
 }
 
+app.post('/comment', (req, res) => {
+  var comment = saveComment(req.body);
+
+  res.setHeader('Content-Type', 'application/json');
+  return res.status(200).json(comment);
+});
+
+function saveComment(comment) {
+  let commentToSave = {
+    bottle_id: comment.bottle_id,
+    name: comment.name,
+    date: comment.date,
+    message: comment.message,
+    image_url: comment.image_url
+  };
+  mockedData.COMMENTS.push(commentToSave);
+
+  return commentToSave;
+}
+
 app.put('/bottle', (req, res) => {
   var bottle = update(req.body);
 
