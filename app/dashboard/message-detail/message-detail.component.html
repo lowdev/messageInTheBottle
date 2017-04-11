@@ -16,7 +16,7 @@
       <div *ngIf="hasComment()">
         <ul class="collection">
           <li class="collection-item avatar">
-            <img src="" alt="" class="circle">
+            <img src="{{ user.picture }}" alt="" class="circle">
             <input #newComment
               placeholder="Ajoute un commentaire"
               (keyup.enter)="addNewComment(newComment.value); newComment.value=''" />

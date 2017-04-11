@@ -8,6 +8,7 @@ import { Comment }                  from '../comment.model';
 import { BottleService }      from '../bottle.service';
 import { MarkerService }      from '../map/marker.service';
 import { BottleEventService } from '../service/bottle-event.service';
+import { CacheUser, User }    from '../../service/cache-user.service';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
@@ -22,6 +23,7 @@ import 'rxjs/add/operator/switchMap';
   animations: Animations.page
 })
 export class MessageDetailComponent implements OnInit {
+  user: User;
   bottle: Bottle;
   comments: Comment[] = [];
 
@@ -29,8 +31,11 @@ export class MessageDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private bottleService: BottleService,
     private markerService: MarkerService,
-    private bottleEventService: BottleEventService
-  ) {}
+    private bottleEventService: BottleEventService,
+    private cacheUser: CacheUser
+  ) {
+    this.user = cacheUser.getUser();
+  }
 
   ngOnInit() {
     this.route.params
@@ -48,7 +53,8 @@ export class MessageDetailComponent implements OnInit {
 
   addNewComment(newComment: string) {
     let comment: Comment = new Comment();
-    comment.name = "me";
+    comment.name = this.user.displayName;
+    comment.image_url = this.user.picture;
     comment.date = "Maintenant";
     comment.message = newComment;
 
