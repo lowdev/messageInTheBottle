@@ -2,7 +2,8 @@
   "name": "messageInBottle",
   "version": "1.0.0",
   "engines": {
-    "node": "4.2.1"
+    "node": "6.10.2",
+    "npm": "3.10.10"
   },
   "scripts": {
     "startdev": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
