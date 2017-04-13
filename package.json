@@ -7,7 +7,7 @@
   },
   "scripts": {
     "startdev": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
-    "start": "node server.js",
+    "start": "tsc && node server.js",
     "lite": "lite-server",
     "tsc": "tsc",
     "tsc:w": "tsc -w"
